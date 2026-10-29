@@ -1,0 +1,11 @@
+import { jayzQuestions } from "./jayz";
+import { jcoleQuestions } from "./jcole";
+import { kendrickQuestions } from "./kendrick";
+import { nasQuestions } from "./nas";
+
+export const rappers = [
+  { id: "nas", name: "Nas", questions: nasQuestions },
+  { id: "jcole", name: "J. Cole", questions: jcoleQuestions },
+  { id: "jayz", name: "Jay-Z", questions: jayzQuestions },
+  { id: "kendrick", name: "Kendrick Lamar", questions: kendrickQuestions },
+];

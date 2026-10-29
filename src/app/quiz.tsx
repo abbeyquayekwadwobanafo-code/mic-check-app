@@ -1,20 +1,36 @@
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
-import { View, Text, Pressable, StyleSheet } from "react-native";
-import { useRouter } from "expo-router";
-import { nasQuestions } from "../data/nas";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { rappers } from "../data/rappers";
 
 export default function Quiz() {
   const router = useRouter();
+  const { rapper: rapperId } = useLocalSearchParams<{ rapper: string }>();
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
 
-  if (index >= nasQuestions.length) {
+  const rapper = rappers.find((r) => r.id === rapperId);
+
+  if (!rapper) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.question}>Pick an artist first.</Text>
+        <Pressable style={styles.nextButton} onPress={() => router.back()}>
+          <Text style={styles.nextText}>GO BACK</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  const questions = rapper.questions;
+
+  if (index >= questions.length) {
     return (
       <View style={styles.container}>
         <Text style={styles.heading}>DONE!</Text>
         <Text style={styles.score}>
-          {score} / {nasQuestions.length}
+          {score} / {questions.length}
         </Text>
         <Pressable
           style={styles.nextButton}
@@ -27,13 +43,13 @@ export default function Quiz() {
           <Text style={styles.nextText}>PLAY AGAIN</Text>
         </Pressable>
         <Pressable onPress={() => router.back()}>
-          <Text style={styles.link}>Back to home</Text>
+          <Text style={styles.link}>Pick another artist</Text>
         </Pressable>
       </View>
     );
   }
 
-  const q = nasQuestions[index];
+  const q = questions[index];
 
   function choose(i: number) {
     if (selected !== null) return;
@@ -48,8 +64,9 @@ export default function Quiz() {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.artist}>{rapper.name.toUpperCase()}</Text>
       <Text style={styles.progress}>
-        {q.category.toUpperCase()} · {index + 1}/{nasQuestions.length}
+        {q.category.toUpperCase()} · {index + 1}/{questions.length}
       </Text>
       <Text style={styles.question}>{q.question}</Text>
 
@@ -73,7 +90,7 @@ export default function Quiz() {
       {selected !== null && (
         <Pressable style={styles.nextButton} onPress={next}>
           <Text style={styles.nextText}>
-            {index === nasQuestions.length - 1 ? "FINISH" : "NEXT"}
+            {index === questions.length - 1 ? "FINISH" : "NEXT"}
           </Text>
         </Pressable>
       )}
@@ -88,6 +105,7 @@ const styles = StyleSheet.create({
     padding: 24,
     justifyContent: "center",
   },
+  artist: { color: "#888", fontWeight: "700", letterSpacing: 3, marginBottom: 6 },
   progress: { color: "#f5c518", fontWeight: "700", letterSpacing: 2, marginBottom: 12 },
   question: { color: "#fff", fontSize: 24, fontWeight: "800", marginBottom: 28 },
   option: { padding: 16, borderRadius: 12, marginBottom: 12 },

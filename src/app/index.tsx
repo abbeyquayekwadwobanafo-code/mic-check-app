@@ -1,5 +1,5 @@
-import { View, Text, Pressable, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function Home() {
   const router = useRouter();
@@ -9,7 +9,7 @@ export default function Home() {
       <Text style={styles.title}>MIC CHECK</Text>
       <Text style={styles.tagline}>How well do you know the bars?</Text>
 
-      <Pressable style={styles.button} onPress={() => router.push("/quiz")}>
+      <Pressable style={styles.button} onPress={() => router.push("/rappers")}>
         <Text style={styles.buttonText}>START</Text>
       </Pressable>
     </View>
