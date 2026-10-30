@@ -1,5 +1,6 @@
 import { useRouter } from "expo-router";
-import { Pressable, ScrollView, StyleSheet, Text } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import RapperAvatar from "../components/RapperAvatar";
 import { rappers } from "../data/rappers";
 
 export default function Rappers() {
@@ -17,8 +18,11 @@ export default function Rappers() {
             router.push({ pathname: "/categories", params: { rapper: r.id } })
           }
         >
-          <Text style={styles.name}>{r.name}</Text>
-          <Text style={styles.count}>{r.questions.length} questions</Text>
+          <RapperAvatar id={r.id} name={r.name} size={64} />
+          <View style={styles.textBox}>
+            <Text style={styles.name}>{r.name}</Text>
+            <Text style={styles.count}>{r.questions.length} questions</Text>
+          </View>
         </Pressable>
       ))}
     </ScrollView>
@@ -36,11 +40,14 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   card: {
+    flexDirection: "row",
+    alignItems: "center",
     backgroundColor: "#1c1c1c",
-    padding: 20,
+    padding: 14,
     borderRadius: 14,
     marginBottom: 14,
   },
+  textBox: { marginLeft: 16, flex: 1 },
   name: { color: "#fff", fontSize: 20, fontWeight: "800" },
   count: { color: "#aaa", marginTop: 4 },
 });
