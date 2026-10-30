@@ -1,17 +1,28 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import { rappers } from "../data/rappers";
 
 export default function Home() {
   const router = useRouter();
+  const total = rappers.reduce((sum, r) => sum + r.questions.length, 0);
 
   return (
     <View style={styles.container}>
+      <View style={styles.micCircle}>
+        <Ionicons name="mic" size={80} color="#f5c518" />
+      </View>
+
       <Text style={styles.title}>MIC CHECK</Text>
       <Text style={styles.tagline}>How well do you know the bars?</Text>
 
       <Pressable style={styles.button} onPress={() => router.push("/rappers")}>
         <Text style={styles.buttonText}>START</Text>
       </Pressable>
+
+      <Text style={styles.footer}>
+        {rappers.length} artists · {total} questions
+      </Text>
     </View>
   );
 }
@@ -23,6 +34,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 24,
+  },
+  micCircle: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    borderWidth: 3,
+    borderColor: "#f5c518",
+    backgroundColor: "#1c1c1c",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 32,
   },
   title: {
     fontSize: 44,
@@ -46,5 +68,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "800",
     color: "#0d0d0d",
+  },
+  footer: {
+    position: "absolute",
+    bottom: 40,
+    color: "#666",
+    letterSpacing: 1,
   },
 });
