@@ -7,6 +7,7 @@ import { jcoleQuestions } from "./jcole";
 import { kendrickQuestions } from "./kendrick";
 import { nasQuestions } from "./nas";
 import { pushaTQuestions } from "./pushat";
+import { schoolboyQQuestions } from "./schoolboyq";
 
 export const rappers = [
   { id: "nas", name: "Nas", questions: nasQuestions },
@@ -18,4 +19,5 @@ export const rappers = [
   { id: "asaprocky", name: "A$AP Rocky", questions: asapRockyQuestions },
   { id: "pushat", name: "Pusha T", questions: pushaTQuestions },
   { id: "eminem", name: "Eminem", questions: eminemQuestions },
+  { id: "schoolboyq", name: "ScHoolboy Q", questions: schoolboyQQuestions },
 ];
