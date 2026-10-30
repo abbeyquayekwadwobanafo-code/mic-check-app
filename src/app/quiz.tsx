@@ -5,7 +5,10 @@ import { rappers } from "../data/rappers";
 
 export default function Quiz() {
   const router = useRouter();
-  const { rapper: rapperId } = useLocalSearchParams<{ rapper: string }>();
+  const { rapper: rapperId, category } = useLocalSearchParams<{
+    rapper: string;
+    category?: string;
+  }>();
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -23,7 +26,10 @@ export default function Quiz() {
     );
   }
 
-  const questions = rapper.questions;
+  const questions =
+    category && category !== "All"
+      ? rapper.questions.filter((q) => q.category === category)
+      : rapper.questions;
 
   if (index >= questions.length) {
     return (
@@ -43,7 +49,7 @@ export default function Quiz() {
           <Text style={styles.nextText}>PLAY AGAIN</Text>
         </Pressable>
         <Pressable onPress={() => router.back()}>
-          <Text style={styles.link}>Pick another artist</Text>
+          <Text style={styles.link}>Choose another category</Text>
         </Pressable>
       </View>
     );

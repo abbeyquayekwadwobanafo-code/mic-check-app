@@ -14,7 +14,7 @@ export default function Rappers() {
           key={r.id}
           style={styles.card}
           onPress={() =>
-            router.push({ pathname: "/quiz", params: { rapper: r.id } })
+            router.push({ pathname: "/categories", params: { rapper: r.id } })
           }
         >
           <Text style={styles.name}>{r.name}</Text>
