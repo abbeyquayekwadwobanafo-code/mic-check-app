@@ -12,6 +12,7 @@ import {
     type ImageSourcePropType,
 } from "react-native";
 import RapperAvatar from "../components/RapperAvatar";
+import Results from "../components/Results";
 import { rapperImages } from "../data/images";
 import type { Question } from "../data/nas";
 import { rappers } from "../data/rappers";
@@ -30,14 +31,6 @@ function prepare(questions: QuizQuestion[]): QuizQuestion[] {
     const options = shuffle(q.options);
     return { ...q, options, answer: options.indexOf(correct) };
   });
-}
-
-function verdict(pct: number) {
-  if (pct >= 90) return "CERTIFIED HEAD";
-  if (pct >= 70) return "REAL ONE";
-  if (pct >= 50) return "NOT BAD";
-  if (pct >= 30) return "KEEP LISTENING";
-  return "BACK TO THE LAB";
 }
 
 // Full-screen background: the artist's photo (blurred and darkened),
@@ -150,23 +143,18 @@ export default function Quiz() {
   }
 
   if (finished) {
-    const pct = Math.round((score / questions.length) * 100);
     const endImage = isMixed ? undefined : rapperImages[scoreId];
     return (
       <Backdrop image={endImage}>
-        <Text style={styles.verdict}>{verdict(pct)}</Text>
-        <Text style={styles.score}>
-          {score} / {questions.length}
-        </Text>
-        <Text style={styles.detail}>
-          {pct}% · Best streak: {bestStreak}
-          {timed ? " · Timer mode" : ""}
-        </Text>
-        {newBest && score > 0 && <Text style={styles.newBest}>NEW BEST!</Text>}
-
-        <Pressable
-          style={styles.nextButton}
-          onPress={() => {
+        <Results
+          title={isMixed ? "Mixed Mode" : rapper?.name ?? ""}
+          score={score}
+          total={questions.length}
+          bestStreak={bestStreak}
+          newBest={newBest && score > 0}
+          timed={timed}
+          backLabel={isMixed ? "Back to artists" : "Choose another category"}
+          onPlayAgain={() => {
             setRound(round + 1);
             setIndex(0);
             setScore(0);
@@ -175,14 +163,8 @@ export default function Quiz() {
             setSelected(null);
             setNewBest(false);
           }}
-        >
-          <Text style={styles.nextText}>PLAY AGAIN</Text>
-        </Pressable>
-        <Pressable onPress={() => router.back()}>
-          <Text style={styles.link}>
-            {isMixed ? "Back to artists" : "Choose another category"}
-          </Text>
-        </Pressable>
+          onBack={() => router.back()}
+        />
       </Backdrop>
     );
   }
@@ -344,21 +326,4 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   nextText: { color: "#0d0d0d", fontWeight: "800", fontSize: 16 },
-  verdict: {
-    color: "#f5c518",
-    fontSize: 34,
-    fontWeight: "900",
-    textAlign: "center",
-    letterSpacing: 2,
-  },
-  score: { color: "#fff", fontSize: 44, fontWeight: "900", textAlign: "center", marginTop: 16 },
-  detail: { color: "#ccc", textAlign: "center", marginTop: 8, marginBottom: 12 },
-  newBest: {
-    color: "#1fd05a",
-    fontWeight: "900",
-    textAlign: "center",
-    letterSpacing: 3,
-    marginBottom: 20,
-  },
-  link: { color: "#ccc", textAlign: "center", marginTop: 20 },
 });
