@@ -1,6 +1,7 @@
 import type { Question } from "./nas";
 
 export const drakeQuestions: Question[] = [
+  // Facts
   { category: "Facts", question: "What is Drake's real first name?", options: ["Andre", "Aubrey", "Adrian", "Austin"], answer: 1 },
   { category: "Facts", question: "Which city is Drake from?", options: ["Montreal", "Vancouver", "Toronto", "Calgary"], answer: 2 },
   { category: "Facts", question: "Which teen TV show did he act in before rapping?", options: ["Degrassi: The Next Generation", "Boy Meets World", "Saved by the Bell", "Zoey 101"], answer: 0 },
@@ -12,6 +13,12 @@ export const drakeQuestions: Question[] = [
   { category: "Facts", question: "Which NBA team does Drake serve as global ambassador for?", options: ["Los Angeles Lakers", "Chicago Bulls", "Toronto Raptors", "Brooklyn Nets"], answer: 2 },
   { category: "Facts", question: "Which nickname for Toronto did Drake help popularize?", options: ["The Bay", "The 6", "The Windy City", "The Motor City"], answer: 1 },
   { category: "Facts", question: "Which 2009 mixtape put Drake on the map?", options: ["Comeback Season", "Room for Improvement", "Care Package", "So Far Gone"], answer: 3 },
+  { category: "Facts", question: "Which Toronto neighborhood did Drake grow up in?", options: ["Scarborough", "Forest Hill", "Etobicoke", "Rosedale"], answer: 1 },
+  { category: "Facts", question: "What is the name of Drake's annual Toronto music festival?", options: ["6ix Fest", "North Fest", "OVO Fest", "Raptors Rave"], answer: 2 },
+  { category: "Facts", question: "Young Money is an imprint of which label?", options: ["Def Jam", "Roc Nation", "Interscope", "Cash Money Records"], answer: 3 },
+  { category: "Facts", question: "Which nickname does Drake use for himself?", options: ["Toronto Tony", "OVO Slim", "Champagne Papi", "Drizzy Don"], answer: 2 },
+
+  // Discography
   { category: "Discography", question: "What was Drake's debut studio album?", options: ["Take Care", "Views", "Thank Me Later", "Scorpion"], answer: 2 },
   { category: "Discography", question: "Which Drake album won the Grammy for Best Rap Album?", options: ["Nothing Was the Same", "Take Care", "Views", "Scorpion"], answer: 1 },
   { category: "Discography", question: "Which 2015 collaborative project did he release with Future?", options: ["Her Loss", "Watch the Throne", "Dark Lane Demo Tapes", "What a Time to Be Alive"], answer: 3 },
@@ -23,7 +30,12 @@ export const drakeQuestions: Question[] = [
   { category: "Discography", question: "In which year was Certified Lover Boy released?", options: ["2021", "2019", "2020", "2022"], answer: 0 },
   { category: "Discography", question: "Which style of music did Honestly, Nevermind lean into?", options: ["Drill", "House and dance music", "Country", "Trap metal"], answer: 1 },
   { category: "Discography", question: "In which year was Nothing Was the Same released?", options: ["2013", "2011", "2015", "2017"], answer: 0 },
-  { category: "Track Numbers", question: "Which song opens Take Care?", options: ["Headlines", "Over My Dead Body", "Crew Love", "Marvins Room"], answer: 1 },
+  { category: "Discography", question: "What was Drake's first mixtape, released in 2006?", options: ["So Far Gone", "Comeback Season", "Room for Improvement", "Care Package"], answer: 2 },
+  { category: "Discography", question: "In which year was Take Care released?", options: ["2011", "2009", "2013", "2015"], answer: 0 },
+  { category: "Discography", question: "In which year was Views released?", options: ["2014", "2016", "2015", "2017"], answer: 1 },
+  { category: "Discography", question: "Which 2020 mixtape did Drake release?", options: ["More Life", "Care Package", "Scorpion", "Dark Lane Demo Tapes"], answer: 3 },
+
+  // Songs
   { category: "Songs", question: "\"Hotline Bling\" is on which album?", options: ["Views", "Scorpion", "More Life", "Take Care"], answer: 0 },
   { category: "Songs", question: "\"God's Plan\" is on which album?", options: ["Views", "Take Care", "Scorpion", "Her Loss"], answer: 2 },
   { category: "Songs", question: "\"Started from the Bottom\" is on which album?", options: ["Take Care", "Thank Me Later", "Nothing Was the Same", "Views"], answer: 2 },
@@ -31,4 +43,12 @@ export const drakeQuestions: Question[] = [
   { category: "Songs", question: "\"Marvins Room\" is on which album?", options: ["Thank Me Later", "Views", "Scorpion", "Take Care"], answer: 3 },
   { category: "Songs", question: "Which artist is featured on \"One Dance\"?", options: ["Burna Boy", "Wizkid", "Davido", "Tems"], answer: 1 },
   { category: "Songs", question: "\"Rich Flex\" is from which album?", options: ["Honestly, Nevermind", "Her Loss", "For All the Dogs", "Certified Lover Boy"], answer: 1 },
+  { category: "Songs", question: "\"Nice for What\" is from which album?", options: ["Views", "More Life", "Take Care", "Scorpion"], answer: 3 },
+  { category: "Songs", question: "\"Headlines\" is from which album?", options: ["Thank Me Later", "Take Care", "Nothing Was the Same", "Views"], answer: 1 },
+  { category: "Songs", question: "\"Best I Ever Had\" is from which project?", options: ["Thank Me Later", "Take Care", "So Far Gone", "Comeback Season"], answer: 2 },
+  { category: "Songs", question: "Which singer is featured on the song \"Take Care\"?", options: ["Beyoncé", "Rihanna", "Alicia Keys", "SZA"], answer: 1 },
+  { category: "Songs", question: "\"Jumpman\" is a collaboration with which rapper?", options: ["Travis Scott", "Young Thug", "Future", "Lil Baby"], answer: 2 },
+  { category: "Songs", question: "Which duo is featured on \"Hold On, We're Going Home\"?", options: ["Daft Punk", "Disclosure", "Chromeo", "Majid Jordan"], answer: 3 },
+  { category: "Songs", question: "\"Know Yourself\" is from which project?", options: ["Take Care", "If You're Reading This It's Too Late", "Views", "Nothing Was the Same"], answer: 1 },
+  { category: "Track Numbers", question: "Which song opens Take Care?", options: ["Headlines", "Over My Dead Body", "Crew Love", "Marvins Room"], answer: 1 },
 ];
