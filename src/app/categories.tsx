@@ -1,8 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
+import { useCallback, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import RapperAvatar from "../components/RapperAvatar";
 import { rappers } from "../data/rappers";
+import { getAllBest, type Scores } from "../utils/scores";
 
 const icons: Record<string, keyof typeof Ionicons.glyphMap> = {
   All: "apps",
@@ -16,6 +18,14 @@ export default function Categories() {
   const router = useRouter();
   const { rapper: rapperId } = useLocalSearchParams<{ rapper: string }>();
   const rapper = rappers.find((r) => r.id === rapperId);
+  const [scores, setScores] = useState<Scores>({});
+
+  // Reload saved scores every time this screen comes back into view
+  useFocusEffect(
+    useCallback(() => {
+      getAllBest().then(setScores);
+    }, [])
+  );
 
   if (!rapper) {
     return (
@@ -46,27 +56,33 @@ export default function Categories() {
         <Text style={styles.heading}>PICK A CATEGORY</Text>
       </View>
 
-      {options.map((o) => (
-        <Pressable
-          key={o.key}
-          style={styles.card}
-          onPress={() =>
-            router.push({
-              pathname: "/quiz",
-              params: { rapper: rapper.id, category: o.key },
-            })
-          }
-        >
-          <View style={styles.iconCircle}>
-            <Ionicons name={icons[o.key] ?? "musical-note"} size={26} color="#f5c518" />
-          </View>
-          <View style={styles.textBox}>
-            <Text style={styles.name}>{o.label}</Text>
-            <Text style={styles.count}>{o.count} questions</Text>
-          </View>
-          <Ionicons name="chevron-forward" size={22} color="#666" />
-        </Pressable>
-      ))}
+      {options.map((o) => {
+        const best = scores[`${rapper.id}:${o.key}`];
+        return (
+          <Pressable
+            key={o.key}
+            style={styles.card}
+            onPress={() =>
+              router.push({
+                pathname: "/quiz",
+                params: { rapper: rapper.id, category: o.key },
+              })
+            }
+          >
+            <View style={styles.iconCircle}>
+              <Ionicons name={icons[o.key] ?? "musical-note"} size={26} color="#f5c518" />
+            </View>
+            <View style={styles.textBox}>
+              <Text style={styles.name}>{o.label}</Text>
+              <Text style={styles.count}>
+                {o.count} questions
+                {best ? `  ·  Best: ${best.score}/${best.total}` : ""}
+              </Text>
+            </View>
+            <Ionicons name="chevron-forward" size={22} color="#666" />
+          </Pressable>
+        );
+      })}
     </ScrollView>
   );
 }
