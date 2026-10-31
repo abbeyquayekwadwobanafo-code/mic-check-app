@@ -3,14 +3,18 @@ import * as Haptics from "expo-haptics";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import RapperAvatar from "../components/RapperAvatar";
 import type { Question } from "../data/nas";
 import { rappers } from "../data/rappers";
 import { saveScore } from "../utils/scores";
 import { shuffle } from "../utils/shuffle";
 
-// Shuffles the question order and each question's answer options,
-// keeping track of where the correct answer ends up.
-function prepare(questions: Question[]): Question[] {
+const MIXED_COUNT = 20; // how many questions in mixed mode
+
+type QuizQuestion = Question & { artist: string; artistId: string };
+
+// Shuffles the answer options of each question, keeping track of the correct one
+function prepare(questions: QuizQuestion[]): QuizQuestion[] {
   return shuffle(questions).map((q) => {
     const correct = q.options[q.answer];
     const options = shuffle(q.options);
@@ -41,27 +45,36 @@ export default function Quiz() {
   const [selected, setSelected] = useState<number | null>(null);
   const [newBest, setNewBest] = useState(false);
 
+  const isMixed = rapperId === "mixed";
   const rapper = rappers.find((r) => r.id === rapperId);
   const categoryKey = category ?? "All";
+  const scoreId = isMixed ? "mixed" : rapperId ?? "";
 
-  const questions = useMemo(() => {
+  const questions = useMemo<QuizQuestion[]>(() => {
+    if (isMixed) {
+      const all: QuizQuestion[] = rappers.flatMap((r) =>
+        r.questions.map((q) => ({ ...q, artist: r.name, artistId: r.id }))
+      );
+      return prepare(shuffle(all).slice(0, MIXED_COUNT));
+    }
     if (!rapper) return [];
-    const pool =
-      categoryKey !== "All"
-        ? rapper.questions.filter((q) => q.category === categoryKey)
-        : rapper.questions;
-    return prepare(pool);
-  }, [rapper, categoryKey, round]);
+    const pool = categoryKey !== "All"
+      ? rapper.questions.filter((q) => q.category === categoryKey)
+      : rapper.questions;
+    return prepare(
+      pool.map((q) => ({ ...q, artist: rapper.name, artistId: rapper.id }))
+    );
+  }, [isMixed, rapper, categoryKey, round]);
 
   const finished = questions.length > 0 && index >= questions.length;
 
   useEffect(() => {
-    if (finished && rapper) {
-      saveScore(rapper.id, categoryKey, score, questions.length).then(setNewBest);
+    if (finished) {
+      saveScore(scoreId, categoryKey, score, questions.length).then(setNewBest);
     }
   }, [finished]);
 
-  if (!rapper || questions.length === 0) {
+  if (questions.length === 0) {
     return (
       <View style={styles.container}>
         <Text style={styles.question}>Pick an artist first.</Text>
@@ -100,7 +113,9 @@ export default function Quiz() {
           <Text style={styles.nextText}>PLAY AGAIN</Text>
         </Pressable>
         <Pressable onPress={() => router.back()}>
-          <Text style={styles.link}>Choose another category</Text>
+          <Text style={styles.link}>
+            {isMixed ? "Back to artists" : "Choose another category"}
+          </Text>
         </Pressable>
       </View>
     );
@@ -132,8 +147,13 @@ export default function Quiz() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.artist}>{rapper.name.toUpperCase()}</Text>
+      <View style={styles.artistRow}>
+        <RapperAvatar id={q.artistId} name={q.artist} size={44} />
+        <Text style={styles.artist}>{q.artist.toUpperCase()}</Text>
+      </View>
+
       <Text style={styles.progress}>
+        {isMixed ? "MIXED · " : ""}
         {q.category.toUpperCase()} · {index + 1}/{questions.length}
       </Text>
 
@@ -185,7 +205,8 @@ const styles = StyleSheet.create({
     padding: 24,
     justifyContent: "center",
   },
-  artist: { color: "#888", fontWeight: "700", letterSpacing: 3, marginBottom: 6 },
+  artistRow: { flexDirection: "row", alignItems: "center", marginBottom: 12 },
+  artist: { color: "#aaa", fontWeight: "800", letterSpacing: 3, marginLeft: 12 },
   progress: { color: "#f5c518", fontWeight: "700", letterSpacing: 2, marginBottom: 10 },
   barTrack: {
     height: 6,
