@@ -1,9 +1,18 @@
 import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { useLocalSearchParams, useRouter } from "expo-router";
+import type { ReactNode } from "react";
 import { useEffect, useMemo, useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import {
+    ImageBackground,
+    Pressable,
+    StyleSheet,
+    Text,
+    View,
+    type ImageSourcePropType,
+} from "react-native";
 import RapperAvatar from "../components/RapperAvatar";
+import { rapperImages } from "../data/images";
 import type { Question } from "../data/nas";
 import { rappers } from "../data/rappers";
 import { saveScore } from "../utils/scores";
@@ -28,6 +37,31 @@ function verdict(pct: number) {
   if (pct >= 50) return "NOT BAD";
   if (pct >= 30) return "KEEP LISTENING";
   return "BACK TO THE LAB";
+}
+
+// Full-screen background: the artist's photo (blurred and darkened),
+// or a plain dark screen if there's no photo.
+function Backdrop({
+  image,
+  children,
+}: {
+  image?: ImageSourcePropType;
+  children: ReactNode;
+}) {
+  if (!image) {
+    return <View style={styles.container}>{children}</View>;
+  }
+  return (
+    <ImageBackground
+      source={image}
+      style={styles.container}
+      resizeMode="cover"
+      blurRadius={3}
+    >
+      <View style={styles.overlay} />
+      {children}
+    </ImageBackground>
+  );
 }
 
 export default function Quiz() {
@@ -58,9 +92,10 @@ export default function Quiz() {
       return prepare(shuffle(all).slice(0, MIXED_COUNT));
     }
     if (!rapper) return [];
-    const pool = categoryKey !== "All"
-      ? rapper.questions.filter((q) => q.category === categoryKey)
-      : rapper.questions;
+    const pool =
+      categoryKey !== "All"
+        ? rapper.questions.filter((q) => q.category === categoryKey)
+        : rapper.questions;
     return prepare(
       pool.map((q) => ({ ...q, artist: rapper.name, artistId: rapper.id }))
     );
@@ -87,8 +122,9 @@ export default function Quiz() {
 
   if (finished) {
     const pct = Math.round((score / questions.length) * 100);
+    const endImage = isMixed ? undefined : rapperImages[scoreId];
     return (
-      <View style={styles.container}>
+      <Backdrop image={endImage}>
         <Text style={styles.verdict}>{verdict(pct)}</Text>
         <Text style={styles.score}>
           {score} / {questions.length}
@@ -117,11 +153,12 @@ export default function Quiz() {
             {isMixed ? "Back to artists" : "Choose another category"}
           </Text>
         </Pressable>
-      </View>
+      </Backdrop>
     );
   }
 
   const q = questions[index];
+  const bgImage = rapperImages[q.artistId];
   const answered = index + (selected !== null ? 1 : 0);
   const progress = (answered / questions.length) * 100;
 
@@ -146,7 +183,7 @@ export default function Quiz() {
   }
 
   return (
-    <View style={styles.container}>
+    <Backdrop image={bgImage}>
       <View style={styles.artistRow}>
         <RapperAvatar id={q.artistId} name={q.artist} size={44} />
         <Text style={styles.artist}>{q.artist.toUpperCase()}</Text>
@@ -171,7 +208,7 @@ export default function Quiz() {
       <Text style={styles.question}>{q.question}</Text>
 
       {q.options.map((opt, i) => {
-        let bg = "#1c1c1c";
+        let bg = "rgba(28,28,28,0.9)";
         if (selected !== null) {
           if (i === q.answer) bg = "#1f7a3a";
           else if (i === selected) bg = "#a12626";
@@ -194,7 +231,7 @@ export default function Quiz() {
           </Text>
         </Pressable>
       )}
-    </View>
+    </Backdrop>
   );
 }
 
@@ -205,8 +242,17 @@ const styles = StyleSheet.create({
     padding: 24,
     justifyContent: "center",
   },
+  // Dark layer over the photo. Raise 0.78 to make it darker, lower it to show more photo.
+  overlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(13,13,13,0.78)",
+  },
   artistRow: { flexDirection: "row", alignItems: "center", marginBottom: 12 },
-  artist: { color: "#aaa", fontWeight: "800", letterSpacing: 3, marginLeft: 12 },
+  artist: { color: "#ddd", fontWeight: "800", letterSpacing: 3, marginLeft: 12 },
   progress: { color: "#f5c518", fontWeight: "700", letterSpacing: 2, marginBottom: 10 },
   barTrack: {
     height: 6,
@@ -237,7 +283,7 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
   },
   score: { color: "#fff", fontSize: 44, fontWeight: "900", textAlign: "center", marginTop: 16 },
-  detail: { color: "#aaa", textAlign: "center", marginTop: 8, marginBottom: 12 },
+  detail: { color: "#ccc", textAlign: "center", marginTop: 8, marginBottom: 12 },
   newBest: {
     color: "#1fd05a",
     fontWeight: "900",
@@ -245,5 +291,5 @@ const styles = StyleSheet.create({
     letterSpacing: 3,
     marginBottom: 20,
   },
-  link: { color: "#aaa", textAlign: "center", marginTop: 20 },
+  link: { color: "#ccc", textAlign: "center", marginTop: 20 },
 });
