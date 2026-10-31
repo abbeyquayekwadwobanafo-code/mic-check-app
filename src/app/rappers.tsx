@@ -1,14 +1,23 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+    Pressable,
+    ScrollView,
+    StyleSheet,
+    Switch,
+    Text,
+    View,
+} from "react-native";
 import RapperAvatar from "../components/RapperAvatar";
 import { rappers } from "../data/rappers";
 import { getAllBest, type Scores } from "../utils/scores";
+import { TIME_LIMIT } from "../utils/settings";
 
 export default function Rappers() {
   const router = useRouter();
   const [scores, setScores] = useState<Scores>({});
+  const [timed, setTimed] = useState(false);
 
   useFocusEffect(
     useCallback(() => {
@@ -16,18 +25,33 @@ export default function Rappers() {
     }, [])
   );
 
-  const mixedBest = scores["mixed:All"];
+  const timer = timed ? "1" : "0";
+  const mixedBest = scores[`mixed:All${timed ? "-timed" : ""}`];
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
       <Text style={styles.heading}>PICK YOUR ARTIST</Text>
+
+      <View style={styles.timerRow}>
+        <Ionicons name="timer" size={28} color="#f5c518" />
+        <View style={styles.textBox}>
+          <Text style={styles.name}>TIMER MODE</Text>
+          <Text style={styles.count}>{TIME_LIMIT} seconds per question</Text>
+        </View>
+        <Switch
+          value={timed}
+          onValueChange={setTimed}
+          trackColor={{ false: "#333", true: "#a87a00" }}
+          thumbColor={timed ? "#f5c518" : "#888"}
+        />
+      </View>
 
       <Pressable
         style={[styles.card, styles.mixedCard]}
         onPress={() =>
           router.push({
             pathname: "/quiz",
-            params: { rapper: "mixed", category: "All" },
+            params: { rapper: "mixed", category: "All", timer },
           })
         }
       >
@@ -48,7 +72,10 @@ export default function Rappers() {
           key={r.id}
           style={styles.card}
           onPress={() =>
-            router.push({ pathname: "/categories", params: { rapper: r.id } })
+            router.push({
+              pathname: "/categories",
+              params: { rapper: r.id, timer },
+            })
           }
         >
           <RapperAvatar id={r.id} name={r.name} size={64} />
@@ -71,6 +98,16 @@ const styles = StyleSheet.create({
     fontWeight: "900",
     letterSpacing: 3,
     marginBottom: 24,
+  },
+  timerRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    marginBottom: 18,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: "#333",
   },
   card: {
     flexDirection: "row",

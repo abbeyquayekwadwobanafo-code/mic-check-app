@@ -5,6 +5,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import RapperAvatar from "../components/RapperAvatar";
 import { rappers } from "../data/rappers";
 import { getAllBest, type Scores } from "../utils/scores";
+import { TIME_LIMIT } from "../utils/settings";
 
 const icons: Record<string, keyof typeof Ionicons.glyphMap> = {
   All: "apps",
@@ -16,7 +17,11 @@ const icons: Record<string, keyof typeof Ionicons.glyphMap> = {
 
 export default function Categories() {
   const router = useRouter();
-  const { rapper: rapperId } = useLocalSearchParams<{ rapper: string }>();
+  const { rapper: rapperId, timer } = useLocalSearchParams<{
+    rapper: string;
+    timer?: string;
+  }>();
+  const timed = timer === "1";
   const rapper = rappers.find((r) => r.id === rapperId);
   const [scores, setScores] = useState<Scores>({});
 
@@ -54,10 +59,18 @@ export default function Categories() {
         <RapperAvatar id={rapper.id} name={rapper.name} size={130} />
         <Text style={styles.artist}>{rapper.name.toUpperCase()}</Text>
         <Text style={styles.heading}>PICK A CATEGORY</Text>
+        {timed && (
+          <View style={styles.timerTag}>
+            <Ionicons name="timer" size={14} color="#f5c518" />
+            <Text style={styles.timerTagText}>
+              TIMER MODE · {TIME_LIMIT}s PER QUESTION
+            </Text>
+          </View>
+        )}
       </View>
 
       {options.map((o) => {
-        const best = scores[`${rapper.id}:${o.key}`];
+        const best = scores[`${rapper.id}:${o.key}${timed ? "-timed" : ""}`];
         return (
           <Pressable
             key={o.key}
@@ -65,7 +78,7 @@ export default function Categories() {
             onPress={() =>
               router.push({
                 pathname: "/quiz",
-                params: { rapper: rapper.id, category: o.key },
+                params: { rapper: rapper.id, category: o.key, timer: timed ? "1" : "0" },
               })
             }
           >
@@ -110,6 +123,22 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     letterSpacing: 3,
     marginTop: 6,
+  },
+  timerTag: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 5,
+    borderRadius: 12,
+    backgroundColor: "#2a2a2a",
+  },
+  timerTagText: {
+    color: "#f5c518",
+    fontWeight: "700",
+    fontSize: 12,
+    letterSpacing: 1,
+    marginLeft: 6,
   },
   card: {
     flexDirection: "row",

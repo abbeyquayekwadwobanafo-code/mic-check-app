@@ -16,6 +16,7 @@ import { rapperImages } from "../data/images";
 import type { Question } from "../data/nas";
 import { rappers } from "../data/rappers";
 import { saveScore } from "../utils/scores";
+import { TIME_LIMIT } from "../utils/settings";
 import { shuffle } from "../utils/shuffle";
 
 const MIXED_COUNT = 20; // how many questions in mixed mode
@@ -66,9 +67,10 @@ function Backdrop({
 
 export default function Quiz() {
   const router = useRouter();
-  const { rapper: rapperId, category } = useLocalSearchParams<{
+  const { rapper: rapperId, category, timer } = useLocalSearchParams<{
     rapper: string;
     category?: string;
+    timer?: string;
   }>();
 
   const [round, setRound] = useState(0);
@@ -76,12 +78,15 @@ export default function Quiz() {
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
   const [bestStreak, setBestStreak] = useState(0);
-  const [selected, setSelected] = useState<number | null>(null);
+  const [selected, setSelected] = useState<number | null>(null); // -1 means time ran out
   const [newBest, setNewBest] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(TIME_LIMIT);
 
+  const timed = timer === "1";
   const isMixed = rapperId === "mixed";
   const rapper = rappers.find((r) => r.id === rapperId);
   const categoryKey = category ?? "All";
+  const scoreCategory = timed ? `${categoryKey}-timed` : categoryKey;
   const scoreId = isMixed ? "mixed" : rapperId ?? "";
 
   const questions = useMemo<QuizQuestion[]>(() => {
@@ -103,11 +108,35 @@ export default function Quiz() {
 
   const finished = questions.length > 0 && index >= questions.length;
 
+  // Save the score when the quiz ends
   useEffect(() => {
     if (finished) {
-      saveScore(scoreId, categoryKey, score, questions.length).then(setNewBest);
+      saveScore(scoreId, scoreCategory, score, questions.length).then(setNewBest);
     }
   }, [finished]);
+
+  // Called when the clock hits zero: counts as a wrong answer
+  function timeUp() {
+    setSelected(-1);
+    setStreak(0);
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+  }
+
+  // The countdown. Starts fresh for every question, stops once you answer.
+  useEffect(() => {
+    if (!timed || finished || selected !== null || questions.length === 0) return;
+    const deadline = Date.now() + TIME_LIMIT * 1000;
+    setTimeLeft(TIME_LIMIT);
+    const id = setInterval(() => {
+      const left = Math.max(0, (deadline - Date.now()) / 1000);
+      setTimeLeft(left);
+      if (left <= 0) {
+        clearInterval(id);
+        timeUp();
+      }
+    }, 100);
+    return () => clearInterval(id);
+  }, [timed, finished, selected, index, round, questions.length]);
 
   if (questions.length === 0) {
     return (
@@ -131,6 +160,7 @@ export default function Quiz() {
         </Text>
         <Text style={styles.detail}>
           {pct}% · Best streak: {bestStreak}
+          {timed ? " · Timer mode" : ""}
         </Text>
         {newBest && score > 0 && <Text style={styles.newBest}>NEW BEST!</Text>}
 
@@ -161,6 +191,9 @@ export default function Quiz() {
   const bgImage = rapperImages[q.artistId];
   const answered = index + (selected !== null ? 1 : 0);
   const progress = (answered / questions.length) * 100;
+
+  const timePct = (timeLeft / TIME_LIMIT) * 100;
+  const timeColor = timePct > 50 ? "#1fd05a" : timePct > 25 ? "#f5c518" : "#e03a3a";
 
   function choose(i: number) {
     if (selected !== null) return;
@@ -198,6 +231,23 @@ export default function Quiz() {
         <View style={[styles.barFill, { width: `${progress}%` }]} />
       </View>
 
+      {timed && (
+        <View style={styles.timerRow}>
+          <Ionicons name="timer" size={18} color={timeColor} />
+          <View style={styles.timerTrack}>
+            <View
+              style={[
+                styles.timerFill,
+                { width: `${timePct}%`, backgroundColor: timeColor },
+              ]}
+            />
+          </View>
+          <Text style={[styles.timerText, { color: timeColor }]}>
+            {Math.ceil(timeLeft)}s
+          </Text>
+        </View>
+      )}
+
       {streak >= 2 && (
         <View style={styles.streakRow}>
           <Ionicons name="flame" size={18} color="#ff7a1a" />
@@ -206,6 +256,8 @@ export default function Quiz() {
       )}
 
       <Text style={styles.question}>{q.question}</Text>
+
+      {selected === -1 && <Text style={styles.timeUp}>TIME'S UP!</Text>}
 
       {q.options.map((opt, i) => {
         let bg = "rgba(28,28,28,0.9)";
@@ -259,12 +311,29 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     backgroundColor: "#2a2a2a",
     overflow: "hidden",
-    marginBottom: 16,
+    marginBottom: 14,
   },
   barFill: { height: 6, borderRadius: 3, backgroundColor: "#f5c518" },
+  timerRow: { flexDirection: "row", alignItems: "center", marginBottom: 14 },
+  timerTrack: {
+    flex: 1,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: "#2a2a2a",
+    overflow: "hidden",
+    marginHorizontal: 10,
+  },
+  timerFill: { height: 8, borderRadius: 4 },
+  timerText: { fontWeight: "900", width: 36, textAlign: "right" },
   streakRow: { flexDirection: "row", alignItems: "center", marginBottom: 10 },
   streakText: { color: "#ff7a1a", fontWeight: "800", marginLeft: 6 },
-  question: { color: "#fff", fontSize: 24, fontWeight: "800", marginBottom: 28 },
+  question: { color: "#fff", fontSize: 24, fontWeight: "800", marginBottom: 20 },
+  timeUp: {
+    color: "#ff4d4d",
+    fontWeight: "900",
+    letterSpacing: 3,
+    marginBottom: 12,
+  },
   option: { padding: 16, borderRadius: 12, marginBottom: 12 },
   optionText: { color: "#fff", fontSize: 16, fontWeight: "600" },
   nextButton: {
