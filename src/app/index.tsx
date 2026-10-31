@@ -1,6 +1,6 @@
-import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import MicLogo from "../components/MicLogo";
 import { rappers } from "../data/rappers";
 
 export default function Home() {
@@ -9,9 +9,7 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.micCircle}>
-        <Ionicons name="mic" size={80} color="#f5c518" />
-      </View>
+      <MicLogo />
 
       <Text style={styles.title}>MIC CHECK</Text>
       <Text style={styles.tagline}>How well do you know the bars?</Text>
@@ -34,17 +32,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 24,
-  },
-  micCircle: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
-    borderWidth: 3,
-    borderColor: "#f5c518",
-    backgroundColor: "#1c1c1c",
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: 32,
   },
   title: {
     fontSize: 44,
