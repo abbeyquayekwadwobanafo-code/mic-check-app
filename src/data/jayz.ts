@@ -1,6 +1,7 @@
 import type { Question } from "./nas";
 
 export const jayzQuestions: Question[] = [
+  // Facts
   { category: "Facts", question: "What is Jay-Z's real name?", options: ["Shawn Carter", "Sean Combs", "Dwayne Carter", "Curtis Jackson"], answer: 0 },
   { category: "Facts", question: "Which Brooklyn housing project did Jay-Z grow up in?", options: ["Queensbridge Houses", "Marcy Houses", "Red Hook Houses", "Brownsville Houses"], answer: 1 },
   { category: "Facts", question: "In which year was Jay-Z born?", options: ["1969", "1967", "1971", "1973"], answer: 0 },
@@ -11,6 +12,13 @@ export const jayzQuestions: Question[] = [
   { category: "Facts", question: "In which year was he inducted into the Rock and Roll Hall of Fame?", options: ["2017", "2019", "2021", "2023"], answer: 2 },
   { category: "Facts", question: "In 2017, he became the first rapper inducted into which hall of fame?", options: ["Songwriters Hall of Fame", "Basketball Hall of Fame", "Grammy Hall of Fame", "Apollo Walk of Fame"], answer: 0 },
   { category: "Facts", question: "Which NBA team was he once a minority owner of?", options: ["New York Knicks", "Brooklyn Nets", "Chicago Bulls", "Miami Heat"], answer: 1 },
+  { category: "Facts", question: "Which mentor's name helped inspire the name \"Jay-Z\"?", options: ["Jaz-O", "Big Daddy Kane", "Slick Rick", "DJ Premier"], answer: 0 },
+  { category: "Facts", question: "In which NYC borough was Jay-Z born?", options: ["Queens", "Brooklyn", "The Bronx", "Manhattan"], answer: 1 },
+  { category: "Facts", question: "In which year did Jay-Z marry Beyoncé?", options: ["2004", "2006", "2008", "2010"], answer: 2 },
+  { category: "Facts", question: "Which champagne brand, known as \"Ace of Spades\", is tied to Jay-Z?", options: ["Dom Pérignon", "Cristal", "Veuve Clicquot", "Armand de Brignac"], answer: 3 },
+  { category: "Facts", question: "Which clothing brand did he co-found in 1999?", options: ["Sean John", "Rocawear", "Phat Farm", "Ecko"], answer: 1 },
+
+  // Discography
   { category: "Discography", question: "What was Jay-Z's debut album?", options: ["The Blueprint", "Reasonable Doubt", "The Black Album", "Vol. 2... Hard Knock Life"], answer: 1 },
   { category: "Discography", question: "In which year was Reasonable Doubt released?", options: ["1996", "1994", "1998", "2000"], answer: 0 },
   { category: "Discography", question: "In which year was Vol. 2... Hard Knock Life released?", options: ["1997", "1998", "1999", "2000"], answer: 1 },
@@ -24,11 +32,23 @@ export const jayzQuestions: Question[] = [
   { category: "Discography", question: "In which year was 4:44 released?", options: ["2015", "2016", "2017", "2018"], answer: 2 },
   { category: "Discography", question: "Which duo released Everything Is Love in 2018?", options: ["The Carters", "The Dynasty", "Roc La Familia", "Hov & B"], answer: 0 },
   { category: "Discography", question: "Which rock band joined him for the 2004 EP Collision Course?", options: ["Green Day", "Coldplay", "Linkin Park", "Fall Out Boy"], answer: 2 },
+  { category: "Discography", question: "Which album was released in 2000 with the subtitle \"Roc La Familia\"?", options: ["Kingdom Come", "The Dynasty", "The Blueprint 2", "American Gangster"], answer: 1 },
+  { category: "Discography", question: "In which year was Magna Carta Holy Grail released?", options: ["2011", "2013", "2015", "2017"], answer: 1 },
+
+  // Songs
   { category: "Songs", question: "Which singer is featured on \"Empire State of Mind\"?", options: ["Alicia Keys", "Rihanna", "Beyoncé", "Mary J. Blige"], answer: 0 },
   { category: "Songs", question: "Which producer made \"99 Problems\"?", options: ["Timbaland", "Rick Rubin", "Pharrell", "Dr. Dre"], answer: 1 },
   { category: "Songs", question: "Which rapper answered \"Takeover\" with the song \"Ether\"?", options: ["Nas", "Prodigy", "Eminem", "50 Cent"], answer: 0 },
   { category: "Songs", question: "Which producer made \"Izzo (H.O.V.A.)\"?", options: ["Just Blaze", "Timbaland", "Kanye West", "Pharrell"], answer: 2 },
   { category: "Songs", question: "Which group is featured on \"Big Pimpin'\"?", options: ["Outkast", "Three 6 Mafia", "Cash Money Millionaires", "UGK"], answer: 3 },
   { category: "Songs", question: "Which rapper is featured on \"Renegade\"?", options: ["Nas", "Eminem", "Biggie", "50 Cent"], answer: 1 },
+  { category: "Songs", question: "\"Hard Knock Life (Ghetto Anthem)\" samples a song from which musical?", options: ["Oliver!", "Cats", "Annie", "Hairspray"], answer: 2 },
+  { category: "Songs", question: "\"Dirt Off Your Shoulder\" is from which album?", options: ["The Blueprint", "The Black Album", "Kingdom Come", "American Gangster"], answer: 1 },
+  { category: "Songs", question: "\"Song Cry\" is from which album?", options: ["The Black Album", "Reasonable Doubt", "The Blueprint", "Vol. 2... Hard Knock Life"], answer: 2 },
+  { category: "Songs", question: "Which singer is featured on \"Run This Town\" alongside Kanye West?", options: ["Beyoncé", "Rihanna", "Alicia Keys", "Mary J. Blige"], answer: 1 },
+  { category: "Songs", question: "Which singer is featured on \"Holy Grail\"?", options: ["Justin Timberlake", "Usher", "Pharrell", "Frank Ocean"], answer: 0 },
+  { category: "Songs", question: "Which singer is featured on \"Can't Knock the Hustle\"?", options: ["Faith Evans", "Lauryn Hill", "Mary J. Blige", "Foxy Brown"], answer: 2 },
+  { category: "Songs", question: "Which rapper is featured on \"Brooklyn's Finest\"?", options: ["Nas", "The Notorious B.I.G.", "Big L", "Jadakiss"], answer: 1 },
+  { category: "Songs", question: "\"Numb/Encore\" is from which collaboration project?", options: ["Watch the Throne", "Collision Course", "Everything Is Love", "Distant Relatives"], answer: 1 },
   { category: "Track Numbers", question: "Which song opens Reasonable Doubt?", options: ["Politics as Usual", "Can't Knock the Hustle", "Dead Presidents II", "Regrets"], answer: 1 },
 ];
