@@ -1,6 +1,7 @@
 import type { Question } from "./nas";
 
 export const kendrickQuestions: Question[] = [
+  // Facts
   { category: "Facts", question: "What is Kendrick Lamar's real name?", options: ["Kendrick Duckworth", "Kendall Duckworth", "Kenneth Lamar", "Keith Duckworth"], answer: 0 },
   { category: "Facts", question: "Which California city is Kendrick Lamar from?", options: ["Oakland", "Long Beach", "Inglewood", "Compton"], answer: 3 },
   { category: "Facts", question: "In which year was Kendrick Lamar born?", options: ["1985", "1987", "1989", "1991"], answer: 1 },
@@ -11,6 +12,13 @@ export const kendrickQuestions: Question[] = [
   { category: "Facts", question: "Which album won Kendrick the Pulitzer Prize for Music?", options: ["DAMN.", "To Pimp a Butterfly", "good kid, m.A.A.d city", "Section.80"], answer: 0 },
   { category: "Facts", question: "Which event did he headline in February 2025?", options: ["BET Awards", "Super Bowl halftime show", "Met Gala", "Coachella"], answer: 1 },
   { category: "Facts", question: "Which hip-hop group is he a member of?", options: ["Odd Future", "A$AP Mob", "Wu-Tang Clan", "Black Hippy"], answer: 3 },
+  { category: "Facts", question: "In which year did Kendrick win the Pulitzer Prize for Music?", options: ["2016", "2017", "2018", "2019"], answer: 2 },
+  { category: "Facts", question: "In 2018 he became the first artist outside which two genres to win the Pulitzer Prize for Music?", options: ["Pop and rock", "Classical and jazz", "Country and folk", "Opera and gospel"], answer: 1 },
+  { category: "Facts", question: "Which of these rappers is NOT a member of Black Hippy?", options: ["Jay Rock", "Ab-Soul", "ScHoolboy Q", "Isaiah Rashad"], answer: 3 },
+  { category: "Facts", question: "Which Compton high school did Kendrick attend?", options: ["Compton High School", "Dominguez High School", "Centennial High School", "Locke High School"], answer: 2 },
+  { category: "Facts", question: "What does TDE stand for?", options: ["The Dope Empire", "Total Dream Era", "Top Dollar Empire", "Top Dawg Entertainment"], answer: 3 },
+
+  // Discography
   { category: "Discography", question: "In which year was Section.80 released?", options: ["2010", "2011", "2012", "2013"], answer: 1 },
   { category: "Discography", question: "Which album is Kendrick's major-label debut?", options: ["Section.80", "DAMN.", "good kid, m.A.A.d city", "GNX"], answer: 2 },
   { category: "Discography", question: "In which year was good kid, m.A.A.d city released?", options: ["2012", "2011", "2013", "2014"], answer: 0 },
@@ -22,6 +30,12 @@ export const kendrickQuestions: Question[] = [
   { category: "Discography", question: "Which 2018 film soundtrack did he curate?", options: ["Creed II", "Black Panther: The Album", "Spider-Verse", "Straight Outta Compton"], answer: 1 },
   { category: "Discography", question: "In which year was Mr. Morale & the Big Steppers released?", options: ["2020", "2021", "2022", "2023"], answer: 2 },
   { category: "Discography", question: "In which year was GNX released?", options: ["2024", "2022", "2023", "2025"], answer: 0 },
+  { category: "Discography", question: "Which of these is a 2010 Kendrick mixtape?", options: ["untitled unmastered.", "Overly Dedicated", "GNX", "DAMN."], answer: 1 },
+  { category: "Discography", question: "Which album is subtitled \"A Short Film by Kendrick Lamar\"?", options: ["Section.80", "good kid, m.A.A.d city", "To Pimp a Butterfly", "DAMN."], answer: 1 },
+  { category: "Discography", question: "Which album got a Collector's Edition with the tracks in reverse order?", options: ["To Pimp a Butterfly", "good kid, m.A.A.d city", "Section.80", "DAMN."], answer: 3 },
+  { category: "Discography", question: "Which album ends with an imagined conversation with Tupac?", options: ["To Pimp a Butterfly", "DAMN.", "Mr. Morale & the Big Steppers", "untitled unmastered."], answer: 0 },
+
+  // Songs
   { category: "Songs", question: "Which rapper is featured on \"Poetic Justice\"?", options: ["J. Cole", "Big Sean", "Lil Wayne", "Drake"], answer: 3 },
   { category: "Songs", question: "Which singer is featured on \"LOYALTY.\"?", options: ["Beyoncé", "SZA", "Rihanna", "Zacari"], answer: 2 },
   { category: "Songs", question: "Which singer is featured on \"All the Stars\"?", options: ["Rihanna", "Jhené Aiko", "Ari Lennox", "SZA"], answer: 3 },
@@ -29,6 +43,12 @@ export const kendrickQuestions: Question[] = [
   { category: "Songs", question: "\"HUMBLE.\" is from which album?", options: ["DAMN.", "Mr. Morale & the Big Steppers", "good kid, m.A.A.d city", "GNX"], answer: 0 },
   { category: "Songs", question: "\"Not Like Us\" was aimed at which rapper?", options: ["J. Cole", "Drake", "Future", "Metro Boomin"], answer: 1 },
   { category: "Songs", question: "Which rock band is featured on \"XXX.\"?", options: ["Coldplay", "U2", "Radiohead", "Imagine Dragons"], answer: 1 },
+  { category: "Songs", question: "Which Big Sean song features Kendrick's famous 2013 verse that namechecked other rappers?", options: ["Fire", "Control", "Dance (A$$)", "Blessings"], answer: 1 },
+  { category: "Songs", question: "Kendrick is featured on a remix of which Taylor Swift song?", options: ["Shake It Off", "Blank Space", "Bad Blood", "Style"], answer: 2 },
+  { category: "Songs", question: "\"Swimming Pools (Drank)\" is from which album?", options: ["Section.80", "To Pimp a Butterfly", "DAMN.", "good kid, m.A.A.d city"], answer: 3 },
+  { category: "Songs", question: "Which rapper is featured on \"Money Trees\"?", options: ["Jay Rock", "ScHoolboy Q", "Ab-Soul", "Drake"], answer: 0 },
+  { category: "Songs", question: "\"King Kunta\" is from which album?", options: ["DAMN.", "To Pimp a Butterfly", "untitled unmastered.", "GNX"], answer: 1 },
+  { category: "Songs", question: "Which funk legend is featured on \"Wesley's Theory\"?", options: ["Bootsy Collins", "Stevie Wonder", "George Clinton", "Sly Stone"], answer: 2 },
   { category: "Track Numbers", question: "What track number is \"Alright\" on To Pimp a Butterfly?", options: ["5", "6", "7", "8"], answer: 2 },
   { category: "Track Numbers", question: "Which song closes DAMN.?", options: ["GOD.", "FEAR.", "DUCKWORTH.", "XXX."], answer: 2 },
 ];
