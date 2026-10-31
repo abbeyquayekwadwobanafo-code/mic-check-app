@@ -1,6 +1,7 @@
 import type { Question } from "./nas";
 
 export const doomQuestions: Question[] = [
+  // Facts
   { category: "Facts", question: "What is MF DOOM's real name?", options: ["Dominic Dumas", "Daniel Dumile", "Darnell Moore", "Damon Dash"], answer: 1 },
   { category: "Facts", question: "In which city was MF DOOM born?", options: ["New York", "Toronto", "Atlanta", "London"], answer: 3 },
   { category: "Facts", question: "Which US state did he grow up in?", options: ["California", "Georgia", "New York", "Illinois"], answer: 2 },
@@ -15,6 +16,9 @@ export const doomQuestions: Question[] = [
   { category: "Facts", question: "Which of these was one of his alter egos?", options: ["Viktor Vaughn", "Slim Shady", "Hov", "Yeezus"], answer: 0 },
   { category: "Facts", question: "King Geedorah is based on a monster from which franchise?", options: ["Pokémon", "Transformers", "Gamera", "Godzilla"], answer: 3 },
   { category: "Facts", question: "What name did he use for his instrumental \"Special Herbs\" series?", options: ["Gold Hands", "Iron Beats", "Metal Fingers", "Steel Keys"], answer: 2 },
+  { category: "Facts", question: "Viktor Vaughn is a play on which comic book villain's real name?", options: ["Lex Luthor", "Victor von Doom", "Norman Osborn", "Eddie Brock"], answer: 1 },
+
+  // Discography
   { category: "Discography", question: "Vaudeville Villain was released under which alias?", options: ["King Geedorah", "Metal Fingers", "Zev Love X", "Viktor Vaughn"], answer: 3 },
   { category: "Discography", question: "What was his debut solo album as MF DOOM?", options: ["Mm..Food", "Operation: Doomsday", "Born Like This", "Vaudeville Villain"], answer: 1 },
   { category: "Discography", question: "In which year was Operation: Doomsday released?", options: ["1999", "1997", "2001", "2003"], answer: 0 },
@@ -27,8 +31,24 @@ export const doomQuestions: Question[] = [
   { category: "Discography", question: "Which duo name did he use with Jneiro Jarel?", options: ["Madvillain", "Danger Doom", "Metal Fingers", "JJ DOOM"], answer: 3 },
   { category: "Discography", question: "Which young rapper joined him for NehruvianDOOM?", options: ["Joey Bada$$", "Earl Sweatshirt", "Bishop Nehru", "Chance the Rapper"], answer: 2 },
   { category: "Discography", question: "Which KMD album was shelved by their label and released years later?", options: ["Mr. Hood", "Black Bastards", "Operation: Doomsday", "Take Me to Your Leader"], answer: 1 },
+  { category: "Discography", question: "Which 2003 album did he release as King Geedorah?", options: ["Take Me to Your Leader", "Vaudeville Villain", "Operation: Doomsday", "Born Like This"], answer: 0 },
+  { category: "Discography", question: "Which 2004 album has food as its theme?", options: ["Madvillainy", "Born Like This", "Mm..Food", "Operation: Doomsday"], answer: 2 },
+  { category: "Discography", question: "In which year was The Mouse and the Mask released?", options: ["2003", "2005", "2007", "2009"], answer: 1 },
+
+  // Songs
   { category: "Songs", question: "He appears on \"November Has Come\" by which virtual band?", options: ["Daft Punk", "The Roots", "Gorillaz", "Linkin Park"], answer: 2 },
   { category: "Songs", question: "\"Rapp Snitch Knishes\" is from which album?", options: ["Madvillainy", "Mm..Food", "Operation: Doomsday", "Born Like This"], answer: 1 },
   { category: "Songs", question: "\"All Caps\" is from which album?", options: ["Mm..Food", "Born Like This", "Vaudeville Villain", "Madvillainy"], answer: 3 },
   { category: "Track Numbers", question: "Which song opens Madvillainy?", options: ["Accordion", "All Caps", "The Illest Villains", "Meat Grinder"], answer: 2 },
+  { category: "Songs", question: "\"Beef Rapp\" is from which album?", options: ["Mm..Food", "Madvillainy", "Born Like This", "Operation: Doomsday"], answer: 0 },
+  { category: "Songs", question: "Which Madvillainy track is named after a musical instrument?", options: ["Meat Grinder", "Curls", "Accordion", "Figaro"], answer: 2 },
+  { category: "Songs", question: "\"Meat Grinder\" is from which album?", options: ["Mm..Food", "Madvillainy", "Vaudeville Villain", "Born Like This"], answer: 1 },
+  { category: "Songs", question: "Which alias of his appears on \"Fancy Clown\"?", options: ["King Geedorah", "Metal Fingers", "Zev Love X", "Viktor Vaughn"], answer: 3 },
+  { category: "Songs", question: "\"Rhinestone Cowboy\" is from which album?", options: ["Mm..Food", "Take Me to Your Leader", "Born Like This", "Madvillainy"], answer: 3 },
+  { category: "Songs", question: "\"Rhymes Like Dimes\" is from which album?", options: ["Madvillainy", "Operation: Doomsday", "Mm..Food", "Born Like This"], answer: 1 },
+  { category: "Songs", question: "\"Gas Drawls\" is from which album?", options: ["Operation: Doomsday", "Madvillainy", "Mm..Food", "Vaudeville Villain"], answer: 0 },
+  { category: "Songs", question: "\"November Has Come\" is on which Gorillaz album?", options: ["Plastic Beach", "Demon Days", "Humanz", "The Now Now"], answer: 1 },
+  { category: "Songs", question: "\"Space Ho's\" is from which album?", options: ["Keys to the Kuffs", "Born Like This", "The Mouse and the Mask", "Mm..Food"], answer: 2 },
+  { category: "Songs", question: "Which rapper is featured on \"Potholderz\"?", options: ["Madlib", "Ghostface Killah", "Talib Kweli", "Count Bass D"], answer: 3 },
+  { category: "Songs", question: "\"Hoe Cakes\" is from which album?", options: ["Madvillainy", "Mm..Food", "Operation: Doomsday", "Born Like This"], answer: 1 },
 ];
