@@ -1,6 +1,7 @@
 import type { Question } from "./nas";
 
 export const schoolboyQQuestions: Question[] = [
+  // Facts
   { category: "Facts", question: "What is ScHoolboy Q's real name?", options: ["Quincy Hanley", "Quentin Hall", "Quinton Harris", "Quincy Jones"], answer: 0 },
   { category: "Facts", question: "In which country was he born?", options: ["United States", "Germany", "Japan", "Italy"], answer: 1 },
   { category: "Facts", question: "Which US city did he grow up in?", options: ["Oakland", "Houston", "Los Angeles", "Detroit"], answer: 2 },
@@ -11,6 +12,13 @@ export const schoolboyQQuestions: Question[] = [
   { category: "Facts", question: "How many members are in Black Hippy?", options: ["3", "4", "5", "6"], answer: 1 },
   { category: "Facts", question: "In which year was ScHoolboy Q born?", options: ["1984", "1986", "1988", "1990"], answer: 1 },
   { category: "Facts", question: "Which major label released Oxymoron alongside TDE?", options: ["Interscope", "Def Jam", "Atlantic", "Columbia"], answer: 0 },
+  { category: "Facts", question: "What is ScHoolboy Q's middle name?", options: ["Michael", "Marcus", "Matthew", "Maurice"], answer: 2 },
+  { category: "Facts", question: "Which part of Los Angeles did he grow up in?", options: ["Venice", "Hollywood", "Westwood", "South Central"], answer: 3 },
+  { category: "Facts", question: "Which Black Hippy member's real name is Herbert Stevens?", options: ["Jay Rock", "Ab-Soul", "Kendrick Lamar", "ScHoolboy Q"], answer: 1 },
+  { category: "Facts", question: "Which LA neighborhood is Black Hippy's Jay Rock from?", options: ["Venice", "Inglewood", "Watts", "Hollywood"], answer: 2 },
+  { category: "Facts", question: "Which Black Hippy member is from Compton?", options: ["Jay Rock", "Ab-Soul", "ScHoolboy Q", "Kendrick Lamar"], answer: 3 },
+
+  // Discography
   { category: "Discography", question: "What was ScHoolboy Q's debut album?", options: ["Setbacks", "Habits & Contradictions", "Oxymoron", "Blank Face LP"], answer: 0 },
   { category: "Discography", question: "In which year was Setbacks released?", options: ["2009", "2010", "2011", "2012"], answer: 2 },
   { category: "Discography", question: "In which year was Habits & Contradictions released?", options: ["2011", "2012", "2013", "2014"], answer: 1 },
@@ -21,6 +29,13 @@ export const schoolboyQQuestions: Question[] = [
   { category: "Discography", question: "Which album was his major-label debut?", options: ["Setbacks", "Oxymoron", "Habits & Contradictions", "CrasH Talk"], answer: 1 },
   { category: "Discography", question: "Which album followed Oxymoron?", options: ["CrasH Talk", "Blank Face LP", "BLUE LIPS", "Habits & Contradictions"], answer: 1 },
   { category: "Discography", question: "Which album came out between Blank Face LP and BLUE LIPS?", options: ["Setbacks", "Oxymoron", "CrasH Talk", "Habits & Contradictions"], answer: 2 },
+  { category: "Discography", question: "What was ScHoolboy Q's 2009 mixtape?", options: ["Setbacks", "Gangsta & Soul", "Oxymoron", "CrasH Talk"], answer: 1 },
+  { category: "Discography", question: "Where did Oxymoron debut on the Billboard 200?", options: ["Number 5", "Number 1", "Number 10", "Number 20"], answer: 1 },
+  { category: "Discography", question: "Which of these is NOT a ScHoolboy Q album?", options: ["Oxymoron", "Blank Face LP", "CrasH Talk", "Control System"], answer: 3 },
+  { category: "Discography", question: "Which album title is a figure of speech that joins contradictory terms?", options: ["Setbacks", "CrasH Talk", "Oxymoron", "BLUE LIPS"], answer: 2 },
+  { category: "Discography", question: "Which album followed Habits & Contradictions?", options: ["Blank Face LP", "CrasH Talk", "Setbacks", "Oxymoron"], answer: 3 },
+
+  // Songs
   { category: "Songs", question: "Which rapper is featured on \"Collard Greens\"?", options: ["Kendrick Lamar", "Jay Rock", "Ab-Soul", "SZA"], answer: 0 },
   { category: "Songs", question: "\"Man of the Year\" is from which album?", options: ["Blank Face LP", "Oxymoron", "CrasH Talk", "Setbacks"], answer: 1 },
   { category: "Songs", question: "Which singer is featured on \"Studio\"?", options: ["Miguel", "BJ the Chicago Kid", "SZA", "Anderson .Paak"], answer: 1 },
@@ -30,5 +45,10 @@ export const schoolboyQQuestions: Question[] = [
   { category: "Songs", question: "Which rapper is featured on \"Hands on the Wheel\"?", options: ["A$AP Rocky", "Drake", "J. Cole", "Big Sean"], answer: 0 },
   { category: "Songs", question: "\"Numb Numb Juice\" is from which album?", options: ["Blank Face LP", "CrasH Talk", "Oxymoron", "BLUE LIPS"], answer: 1 },
   { category: "Songs", question: "\"There He Go\" is from which album?", options: ["Setbacks", "Habits & Contradictions", "Oxymoron", "Blank Face LP"], answer: 1 },
+  { category: "Songs", question: "Which rapper is featured on \"What They Want\"?", options: ["Future", "Rick Ross", "2 Chainz", "Migos"], answer: 2 },
+  { category: "Songs", question: "\"Hell of a Night\" is from which album?", options: ["Setbacks", "Blank Face LP", "Oxymoron", "CrasH Talk"], answer: 2 },
+  { category: "Songs", question: "\"Groovy Tony\" is from which album?", options: ["Oxymoron", "Blank Face LP", "CrasH Talk", "Setbacks"], answer: 1 },
+  { category: "Songs", question: "Which artist is featured on \"Blessed\"?", options: ["Frank Ocean", "Tyler, the Creator", "The Weeknd", "Kid Cudi"], answer: 3 },
+  { category: "Songs", question: "Which Bay Area rapper is featured on \"Dope Dealer\"?", options: ["Too $hort", "E-40", "Mac Dre", "Andre Nickatina"], answer: 1 },
   { category: "Track Numbers", question: "Which song opens Blank Face LP?", options: ["TorcH", "Groovy Tony", "THat Part", "Kno Ya Wrong"], answer: 0 },
 ];
