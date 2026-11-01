@@ -1,6 +1,7 @@
 import type { Question } from "./nas";
 
 export const jcoleQuestions: Question[] = [
+  // Facts
   { category: "Facts", question: "What is J. Cole's real name?", options: ["Jermaine Cole", "Jerome Cole", "Jamal Cole", "Jared Cole"], answer: 0 },
   { category: "Facts", question: "In which country was J. Cole born?", options: ["United States", "Germany", "Canada", "Italy"], answer: 1 },
   { category: "Facts", question: "Which North Carolina city did he grow up in?", options: ["Charlotte", "Raleigh", "Fayetteville", "Durham"], answer: 2 },
@@ -12,6 +13,12 @@ export const jcoleQuestions: Question[] = [
   { category: "Facts", question: "In which city is the Dreamville Festival held?", options: ["Atlanta", "Charlotte", "Durham", "Raleigh"], answer: 3 },
   { category: "Facts", question: "In 2021, he played pro basketball in which African country?", options: ["Nigeria", "Ghana", "Rwanda", "Kenya"], answer: 2 },
   { category: "Facts", question: "Which of these is one meaning of the album title KOD?", options: ["Kings of Dreamville", "Kill Our Debts", "Kids on Drugs", "Keep On Dreaming"], answer: 2 },
+  { category: "Facts", question: "What is J. Cole's middle name?", options: ["Lamont", "Lance", "Lamarr", "Lawrence"], answer: 2 },
+  { category: "Facts", question: "Who co-founded Dreamville with J. Cole?", options: ["Mike Dean", "Jermaine Dupri", "Troy Carter", "Ibrahim Hamad"], answer: 3 },
+  { category: "Facts", question: "Which high school did J. Cole attend in Fayetteville?", options: ["Jack Britt High School", "Terry Sanford High School", "Seventy-First High School", "Pine Forest High School"], answer: 1 },
+  { category: "Facts", question: "Which Rwandan team did he play for in 2021?", options: ["APR BBC", "REG BBC", "Kigali Heat", "Patriots BBC"], answer: 3 },
+
+  // Discography
   { category: "Discography", question: "What was J. Cole's debut mixtape?", options: ["The Warm Up", "The Come Up", "Friday Night Lights", "Truly Yours"], answer: 1 },
   { category: "Discography", question: "Which of these is his 2009 mixtape?", options: ["The Warm Up", "The Come Up", "Friday Night Lights", "Truly Yours"], answer: 0 },
   { category: "Discography", question: "In which year was Friday Night Lights released?", options: ["2009", "2010", "2011", "2012"], answer: 1 },
@@ -24,11 +31,24 @@ export const jcoleQuestions: Question[] = [
   { category: "Discography", question: "In which year was KOD released?", options: ["2017", "2019", "2018", "2020"], answer: 2 },
   { category: "Discography", question: "In which year was The Off-Season released?", options: ["2019", "2020", "2021", "2022"], answer: 2 },
   { category: "Discography", question: "Which Dreamville compilation was released in 2019?", options: ["Revenge of the Dreamers III", "Revenge of the Dreamers II", "Truly Yours", "Born Sinner"], answer: 0 },
+  { category: "Discography", question: "Which EP series did J. Cole start releasing in 2013?", options: ["Revenge of the Dreamers", "The Warm Up", "Truly Yours", "Friday Night Lights"], answer: 2 },
+  { category: "Discography", question: "Which album's song titles are stylized with spaces between the letters?", options: ["KOD", "Born Sinner", "The Off-Season", "4 Your Eyez Only"], answer: 2 },
+  { category: "Discography", question: "Which of these is NOT a J. Cole studio album?", options: ["Born Sinner", "KOD", "The Warm Up", "4 Your Eyez Only"], answer: 2 },
+
+  // Songs
   { category: "Songs", question: "\"Work Out\" samples which singer's \"Straight Up\"?", options: ["Whitney Houston", "Janet Jackson", "Paula Abdul", "Madonna"], answer: 2 },
   { category: "Songs", question: "Which rapper is featured on \"Forbidden Fruit\"?", options: ["Kendrick Lamar", "Drake", "Big Sean", "Wale"], answer: 0 },
   { category: "Songs", question: "Which singer is featured on \"Power Trip\"?", options: ["Usher", "Trey Songz", "The Weeknd", "Miguel"], answer: 3 },
   { category: "Songs", question: "\"No Role Modelz\" is from which album?", options: ["Born Sinner", "KOD", "2014 Forest Hills Drive", "4 Your Eyez Only"], answer: 2 },
   { category: "Songs", question: "Which group is featured on \"Crooked Smile\"?", options: ["Destiny's Child", "TLC", "En Vogue", "SWV"], answer: 1 },
   { category: "Songs", question: "Which rapper is featured on \"m y . l i f e\" with Morray?", options: ["Drake", "21 Savage", "Future", "Lil Baby"], answer: 1 },
+  { category: "Songs", question: "\"Wet Dreamz\" is from which album?", options: ["Born Sinner", "2014 Forest Hills Drive", "KOD", "Cole World: The Sideline Story"], answer: 1 },
+  { category: "Songs", question: "\"Lights Please\" is from which project?", options: ["KOD", "Born Sinner", "The Off-Season", "The Warm Up"], answer: 3 },
+  { category: "Songs", question: "Which singer is featured on \"Can't Get Enough\"?", options: ["Usher", "Miguel", "Ne-Yo", "Trey Songz"], answer: 3 },
+  { category: "Songs", question: "J. Cole is featured on which 21 Savage song that won a Grammy?", options: ["Bank Account", "a lot", "ball w/o you", "ASMR"], answer: 1 },
+  { category: "Songs", question: "\"ATM\" is from which album?", options: ["Born Sinner", "KOD", "4 Your Eyez Only", "The Off-Season"], answer: 1 },
+  { category: "Songs", question: "On which late-night show did he perform \"Be Free\" in 2014?", options: ["The Tonight Show", "Saturday Night Live", "Jimmy Kimmel Live!", "Late Show with David Letterman"], answer: 3 },
+  { category: "Songs", question: "\"Work Out\" is from which album?", options: ["Born Sinner", "Cole World: The Sideline Story", "2014 Forest Hills Drive", "KOD"], answer: 1 },
+  { category: "Songs", question: "\"Villuminati\" is from which album?", options: ["KOD", "Cole World: The Sideline Story", "Born Sinner", "4 Your Eyez Only"], answer: 2 },
   { category: "Track Numbers", question: "Which song closes 2014 Forest Hills Drive?", options: ["Love Yourz", "Apparently", "Note to Self", "Hello"], answer: 2 },
 ];
