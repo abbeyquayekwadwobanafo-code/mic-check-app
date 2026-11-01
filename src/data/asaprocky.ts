@@ -1,6 +1,7 @@
 import type { Question } from "./nas";
 
 export const asapRockyQuestions: Question[] = [
+  // Facts
   { category: "Facts", question: "What is A$AP Rocky's real name?", options: ["Rashid Moore", "Rakim Mayers", "Rakeem Jones", "Rahim Brown"], answer: 1 },
   { category: "Facts", question: "Which New York neighborhood is he from?", options: ["Brooklyn", "The Bronx", "Queens", "Harlem"], answer: 3 },
   { category: "Facts", question: "Harlem is part of which NYC borough?", options: ["Manhattan", "Brooklyn", "Queens", "Staten Island"], answer: 0 },
@@ -12,6 +13,12 @@ export const asapRockyQuestions: Question[] = [
   { category: "Facts", question: "Which of these is a fellow A$AP Mob member?", options: ["A$AP Ferg", "Tyler, the Creator", "Earl Sweatshirt", "Vince Staples"], answer: 0 },
   { category: "Facts", question: "Which major label did he sign with in 2011?", options: ["Def Jam", "Atlantic", "Cash Money", "RCA Records"], answer: 3 },
   { category: "Facts", question: "Which Southern city's rap scene influenced his early sound?", options: ["Atlanta", "Houston", "Memphis", "New Orleans"], answer: 1 },
+  { category: "Facts", question: "Which A$AP Mob member co-founded the VLONE brand?", options: ["A$AP Nast", "A$AP Bari", "A$AP Twelvyy", "A$AP Ant"], answer: 1 },
+  { category: "Facts", question: "Which nickname is A$AP Rocky known by?", options: ["Pretty Flacko", "Harlem Hov", "Mayers Prime", "Lord Rakim"], answer: 0 },
+  { category: "Facts", question: "In which 2015 film did A$AP Rocky act?", options: ["Straight Outta Compton", "Creed", "Dope", "Southpaw"], answer: 2 },
+  { category: "Facts", question: "What does AWGE, his creative collective, stand for?", options: ["All World Gold Empire", "Always Winning Gets Everything", "A$AP Worldwide Group Entertainment", "Alpha Wave Group Entertainment"], answer: 2 },
+
+  // Discography
   { category: "Discography", question: "What was A$AP Rocky's debut mixtape?", options: ["Live. Love. A$AP", "Trap Lord", "Cozy Tapes Vol. 1", "Testing"], answer: 0 },
   { category: "Discography", question: "In which year was Live. Love. A$AP released?", options: ["2009", "2010", "2011", "2013"], answer: 2 },
   { category: "Discography", question: "What was his debut studio album?", options: ["Testing", "At.Long.Last.A$AP", "Long. Live. A$AP", "Live. Love. A$AP"], answer: 2 },
@@ -22,6 +29,13 @@ export const asapRockyQuestions: Question[] = [
   { category: "Discography", question: "In which year was Testing released?", options: ["2016", "2017", "2018", "2019"], answer: 2 },
   { category: "Discography", question: "Which A$AP Mob member released the album Trap Lord?", options: ["A$AP Ferg", "A$AP Nast", "A$AP Twelvyy", "A$AP Rocky"], answer: 0 },
   { category: "Discography", question: "Which A$AP Mob project was released in 2016?", options: ["Cozy Tapes Vol. 1: Friends", "Testing", "At.Long.Last.A$AP", "Trap Lord"], answer: 0 },
+  { category: "Discography", question: "Which of these is a 2012 A$AP Mob mixtape?", options: ["Cozy Tapes Vol. 1", "Lords Never Worry", "Testing", "At.Long.Last.A$AP"], answer: 1 },
+  { category: "Discography", question: "In which year was Cozy Tapes Vol. 1: Friends released?", options: ["2014", "2016", "2018", "2019"], answer: 1 },
+  { category: "Discography", question: "Where did Long. Live. A$AP debut on the Billboard 200?", options: ["Number 5", "Number 10", "Number 1", "Number 20"], answer: 2 },
+  { category: "Discography", question: "Which of these is NOT an A$AP Rocky studio album?", options: ["Long. Live. A$AP", "At.Long.Last.A$AP", "Testing", "Trap Lord"], answer: 3 },
+  { category: "Discography", question: "Which A$AP Mob member released the album Always Strive and Prosper in 2016?", options: ["A$AP Nast", "A$AP Twelvyy", "A$AP Ferg", "A$AP Ant"], answer: 2 },
+
+  // Songs
   { category: "Songs", question: "\"Goldie\" is from which album?", options: ["Testing", "Long. Live. A$AP", "At.Long.Last.A$AP", "Live. Love. A$AP"], answer: 1 },
   { category: "Songs", question: "Which producer is featured on \"Wild for the Night\"?", options: ["Diplo", "Skrillex", "Calvin Harris", "Zedd"], answer: 1 },
   { category: "Songs", question: "Which classic rock singer is featured on \"Everyday\"?", options: ["Rod Stewart", "Mick Jagger", "Elton John", "Sting"], answer: 0 },
@@ -30,5 +44,11 @@ export const asapRockyQuestions: Question[] = [
   { category: "Songs", question: "\"Peso\" is from which project?", options: ["Live. Love. A$AP", "Testing", "At.Long.Last.A$AP", "Long. Live. A$AP"], answer: 0 },
   { category: "Songs", question: "\"Fashion Killa\" is from which album?", options: ["Testing", "Long. Live. A$AP", "At.Long.Last.A$AP", "Live. Love. A$AP"], answer: 1 },
   { category: "Songs", question: "\"Purple Swag\" is from which project?", options: ["Testing", "At.Long.Last.A$AP", "Live. Love. A$AP", "Long. Live. A$AP"], answer: 2 },
+  { category: "Songs", question: "Which rapper is featured on \"1Train\" alongside Joey Bada$$?", options: ["Drake", "Kendrick Lamar", "J. Cole", "Jay-Z"], answer: 1 },
+  { category: "Songs", question: "\"Canal St.\" is from which album?", options: ["Testing", "Long. Live. A$AP", "Live. Love. A$AP", "At.Long.Last.A$AP"], answer: 3 },
+  { category: "Songs", question: "Which rapper is featured on \"Electric Body\"?", options: ["Kendrick Lamar", "Travis Scott", "ScHoolboy Q", "Tyler, the Creator"], answer: 2 },
+  { category: "Songs", question: "Which electronic artist is featured on \"A$AP Forever\"?", options: ["Skrillex", "Moby", "Diplo", "Flume"], answer: 1 },
+  { category: "Songs", question: "\"Wassup\" is from which album?", options: ["Testing", "Long. Live. A$AP", "At.Long.Last.A$AP", "Live. Love. A$AP"], answer: 1 },
+  { category: "Songs", question: "\"Max B\" is from which album?", options: ["At.Long.Last.A$AP", "Testing", "Long. Live. A$AP", "Live. Love. A$AP"], answer: 0 },
   { category: "Track Numbers", question: "Which song opens At.Long.Last.A$AP?", options: ["Holy Ghost", "L$D", "Canal St.", "Everyday"], answer: 0 },
 ];
