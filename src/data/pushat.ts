@@ -1,6 +1,7 @@
 import type { Question } from "./nas";
 
 export const pushaTQuestions: Question[] = [
+  // Facts
   { category: "Facts", question: "What is Pusha T's real name?", options: ["Terrence Thornton", "Terrell Thompson", "Tyrone Thomas", "Troy Thornton"], answer: 0 },
   { category: "Facts", question: "In which NYC borough was Pusha T born?", options: ["Brooklyn", "Queens", "The Bronx", "Staten Island"], answer: 2 },
   { category: "Facts", question: "Which Virginia city did he grow up in?", options: ["Richmond", "Norfolk", "Roanoke", "Virginia Beach"], answer: 3 },
@@ -11,7 +12,14 @@ export const pushaTQuestions: Question[] = [
   { category: "Facts", question: "Which label did he join in 2010 as a solo artist?", options: ["G.O.O.D. Music", "Roc-A-Fella", "Cash Money", "Bad Boy"], answer: 0 },
   { category: "Facts", question: "Who named him president of G.O.O.D. Music in 2015?", options: ["Jay-Z", "Kanye West", "Pharrell", "Diddy"], answer: 1 },
   { category: "Facts", question: "The Daytona cover is a photo of which singer's bathroom?", options: ["Aaliyah", "Whitney Houston", "Amy Winehouse", "Michael Jackson"], answer: 1 },
-  { category: "Discography", question: "What was Clipse's debut album?", options: ["Hell Hath No Fury", "Lord Willin'", "Til the Casket Drops", "We Got It for Cheap"], answer: 1 },
+  { category: "Facts", question: "Which nickname does Pusha T use for himself?", options: ["Prince Pusha", "King Push", "Virginia Don", "Thornton Tony"], answer: 1 },
+  { category: "Facts", question: "Which group did Clipse form with Ab-Liva and Sandman?", options: ["Dipset", "Boot Camp Clik", "Re-Up Gang", "Terror Squad"], answer: 2 },
+  { category: "Facts", question: "What does G.O.O.D. stand for in G.O.O.D. Music?", options: ["Greatest Of Our Decade", "Gold On Our Doors", "Gifted Only Our Dreams", "Getting Out Our Dreams"], answer: 3 },
+  { category: "Facts", question: "How much was paid for the photo on the Daytona cover?", options: ["$8,500", "$85,000", "$850,000", "$8,500,000"], answer: 1 },
+  { category: "Facts", question: "Daytona is named after which luxury watch?", options: ["Patek Philippe Nautilus", "Audemars Piguet Royal Oak", "Rolex Daytona", "Omega Speedmaster"], answer: 2 },
+
+  // Discography
+  { category: "Discography", question: "What was Clipse's debut album?", options: ["Hell Hath No Fury", "Lord Willin'", "Til the Casket Drops", "We Got It 4 Cheap"], answer: 1 },
   { category: "Discography", question: "In which year was Lord Willin' released?", options: ["2002", "2000", "2004", "2006"], answer: 0 },
   { category: "Discography", question: "In which year was Hell Hath No Fury released?", options: ["2004", "2005", "2006", "2008"], answer: 2 },
   { category: "Discography", question: "In which year was Til the Casket Drops released?", options: ["2009", "2007", "2008", "2010"], answer: 0 },
@@ -23,6 +31,11 @@ export const pushaTQuestions: Question[] = [
   { category: "Discography", question: "In which year was It's Almost Dry released?", options: ["2022", "2020", "2021", "2023"], answer: 0 },
   { category: "Discography", question: "Which two producers handled most of It's Almost Dry?", options: ["Metro Boomin and Southside", "Pharrell Williams and Kanye West", "The Alchemist and Madlib", "Timbaland and Missy Elliott"], answer: 1 },
   { category: "Discography", question: "Which Clipse album was released in 2025?", options: ["Hell Hath No Fury", "Lord Willin'", "Til the Casket Drops", "Let God Sort Em Out"], answer: 3 },
+  { category: "Discography", question: "Which mixtape series did Clipse release?", options: ["Lord Willin' Vol. 2", "Neptunes Nights", "We Got It 4 Cheap", "Dark Lane Demo Tapes"], answer: 2 },
+  { category: "Discography", question: "Which of these is a Pusha T solo mixtape from 2011?", options: ["Daytona", "Hell Hath No Fury", "Fear of God", "Til the Casket Drops"], answer: 2 },
+  { category: "Discography", question: "Which Clipse album was produced entirely by The Neptunes?", options: ["Lord Willin'", "Hell Hath No Fury", "Til the Casket Drops", "Let God Sort Em Out"], answer: 1 },
+
+  // Songs
   { category: "Songs", question: "\"Grindin'\" is from which Clipse album?", options: ["Hell Hath No Fury", "Lord Willin'", "Til the Casket Drops", "My Name Is My Name"], answer: 1 },
   { category: "Songs", question: "\"Mercy\" appears on which G.O.O.D. Music compilation?", options: ["Cruel Summer", "Watch the Throne", "The College Dropout", "Late Registration"], answer: 0 },
   { category: "Songs", question: "He has a verse on \"Runaway\" from which Kanye West album?", options: ["Graduation", "808s & Heartbreak", "My Beautiful Dark Twisted Fantasy", "Yeezus"], answer: 2 },
@@ -30,5 +43,12 @@ export const pushaTQuestions: Question[] = [
   { category: "Songs", question: "\"Numbers on the Boards\" is from which album?", options: ["Daytona", "My Name Is My Name", "Lord Willin'", "It's Almost Dry"], answer: 1 },
   { category: "Songs", question: "\"The Story of Adidon\" was aimed at which rapper?", options: ["Kendrick Lamar", "Drake", "Lil Wayne", "Jay-Z"], answer: 1 },
   { category: "Songs", question: "\"Infrared\" is from which album?", options: ["Daytona", "It's Almost Dry", "My Name Is My Name", "Hell Hath No Fury"], answer: 0 },
+  { category: "Songs", question: "Which rapper is featured on \"Hard Piano\"?", options: ["Kanye West", "Rick Ross", "Jay-Z", "Lil Wayne"], answer: 1 },
+  { category: "Songs", question: "Which artist is featured on \"What Would Meek Do?\"", options: ["Drake", "Meek Mill", "Travis Scott", "Kanye West"], answer: 3 },
+  { category: "Songs", question: "Which rapper is featured on \"Neck & Wrist\"?", options: ["Nas", "Drake", "Jay-Z", "Kanye West"], answer: 2 },
+  { category: "Songs", question: "Which singer is featured on \"Sweet Serenade\"?", options: ["Usher", "The Weeknd", "Miguel", "Chris Brown"], answer: 3 },
+  { category: "Songs", question: "\"Mr. Me Too\" is from which Clipse album?", options: ["Lord Willin'", "Til the Casket Drops", "Hell Hath No Fury", "Let God Sort Em Out"], answer: 2 },
+  { category: "Songs", question: "\"When the Last Time\" is from which Clipse album?", options: ["Hell Hath No Fury", "Lord Willin'", "Til the Casket Drops", "Let God Sort Em Out"], answer: 1 },
+  { category: "Songs", question: "\"The Games We Play\" is from which album?", options: ["It's Almost Dry", "Daytona", "My Name Is My Name", "Hell Hath No Fury"], answer: 1 },
   { category: "Track Numbers", question: "Which song opens Daytona?", options: ["The Games We Play", "Hard Piano", "If You Know You Know", "Santeria"], answer: 2 },
 ];
