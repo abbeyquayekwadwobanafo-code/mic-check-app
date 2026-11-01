@@ -1,6 +1,7 @@
 import type { Question } from "./nas";
 
 export const eminemQuestions: Question[] = [
+  // Facts
   { category: "Facts", question: "What is Eminem's real name?", options: ["Marshall Mathers", "Marcus Mills", "Michael Mathers", "Mitchell Mathews"], answer: 0 },
   { category: "Facts", question: "Which city did Eminem grow up in?", options: ["Chicago", "Detroit", "Cleveland", "Philadelphia"], answer: 1 },
   { category: "Facts", question: "In which US state was Eminem born?", options: ["Michigan", "Ohio", "Missouri", "Illinois"], answer: 2 },
@@ -12,6 +13,12 @@ export const eminemQuestions: Question[] = [
   { category: "Facts", question: "\"Lose Yourself\" won which major film award?", options: ["Golden Globe for Best Actor", "Academy Award for Best Original Song", "BAFTA for Best Film", "Cannes Palme d'Or"], answer: 1 },
   { category: "Facts", question: "In which year was Eminem inducted into the Rock and Roll Hall of Fame?", options: ["2018", "2020", "2022", "2024"], answer: 2 },
   { category: "Facts", question: "In which year was Eminem born?", options: ["1970", "1972", "1974", "1976"], answer: 1 },
+  { category: "Facts", question: "What is Eminem's middle name?", options: ["Bradley", "Brian", "Bruce", "Brandon"], answer: 2 },
+  { category: "Facts", question: "What was Eminem's character called in 8 Mile?", options: ["Slim Jim", "B-Rabbit", "Mr. Shady", "Detroit Dan"], answer: 1 },
+  { category: "Facts", question: "Who is Eminem's longtime manager and Shady Records co-founder?", options: ["Jimmy Iovine", "Irv Gotti", "Steve Rifkind", "Paul Rosenberg"], answer: 3 },
+  { category: "Facts", question: "Which D12 member and close friend of Eminem died in 2006?", options: ["Bizarre", "Proof", "Kuniva", "Swift"], answer: 1 },
+
+  // Discography
   { category: "Discography", question: "What was Eminem's debut album, released independently in 1996?", options: ["Infinite", "The Slim Shady LP", "Relapse", "Encore"], answer: 0 },
   { category: "Discography", question: "Which album was his major-label debut?", options: ["The Marshall Mathers LP", "The Slim Shady LP", "The Eminem Show", "Encore"], answer: 1 },
   { category: "Discography", question: "In which year was The Marshall Mathers LP released?", options: ["1999", "2000", "2002", "2004"], answer: 1 },
@@ -24,11 +31,24 @@ export const eminemQuestions: Question[] = [
   { category: "Discography", question: "Which 2018 album was released as a surprise?", options: ["Revival", "Kamikaze", "Recovery", "Relapse"], answer: 1 },
   { category: "Discography", question: "In which year was Music to Be Murdered By released?", options: ["2019", "2020", "2021", "2022"], answer: 1 },
   { category: "Discography", question: "Which 2024 album is subtitled \"Coup de Grâce\"?", options: ["Kamikaze", "Revival", "The Death of Slim Shady", "Music to Be Murdered By"], answer: 2 },
+  { category: "Discography", question: "In which year was The Slim Shady LP released?", options: ["1999", "1997", "2001", "2003"], answer: 0 },
+  { category: "Discography", question: "Which 2005 album was Eminem's greatest-hits collection?", options: ["Encore", "The Eminem Show", "Curtain Call: The Hits", "Relapse"], answer: 2 },
+  { category: "Discography", question: "Which Eminem album was the world's best-selling album of 2010?", options: ["Relapse", "Recovery", "Encore", "Revival"], answer: 1 },
+
+  // Songs
   { category: "Songs", question: "\"My Name Is\" is from which album?", options: ["The Slim Shady LP", "Infinite", "Encore", "The Eminem Show"], answer: 0 },
   { category: "Songs", question: "Which singer is featured on \"Stan\"?", options: ["Alicia Keys", "Dido", "Sia", "Pink"], answer: 1 },
   { category: "Songs", question: "Which singer is featured on \"Love the Way You Lie\"?", options: ["Rihanna", "Beyoncé", "Katy Perry", "Nicki Minaj"], answer: 0 },
   { category: "Songs", question: "\"Without Me\" is from which album?", options: ["Encore", "The Marshall Mathers LP", "The Eminem Show", "Recovery"], answer: 2 },
   { category: "Songs", question: "\"Not Afraid\" is from which album?", options: ["Recovery", "Relapse", "Revival", "Kamikaze"], answer: 0 },
   { category: "Songs", question: "\"Rap God\" is from which album?", options: ["Relapse", "The Marshall Mathers LP 2", "Revival", "Encore"], answer: 1 },
+  { category: "Songs", question: "\"Lose Yourself\" is from the soundtrack of which film?", options: ["Hustle & Flow", "Brown Sugar", "8 Mile", "Get Rich or Die Tryin'"], answer: 2 },
+  { category: "Songs", question: "\"The Real Slim Shady\" is from which album?", options: ["The Slim Shady LP", "The Marshall Mathers LP", "The Eminem Show", "Encore"], answer: 1 },
+  { category: "Songs", question: "\"Mockingbird\" is from which album?", options: ["Relapse", "Recovery", "Revival", "Encore"], answer: 3 },
+  { category: "Songs", question: "\"The Monster\" is from which album?", options: ["Recovery", "The Marshall Mathers LP 2", "Revival", "Kamikaze"], answer: 1 },
+  { category: "Songs", question: "Who is featured on \"Guilty Conscience\"?", options: ["Snoop Dogg", "50 Cent", "Dr. Dre", "Obie Trice"], answer: 2 },
+  { category: "Songs", question: "Which rapper is featured on \"Lucky You\"?", options: ["Lil Wayne", "Kendrick Lamar", "Logic", "Joyner Lucas"], answer: 3 },
+  { category: "Songs", question: "Which rapper is featured on \"Godzilla\"?", options: ["Lil Uzi Vert", "Juice WRLD", "XXXTentacion", "Travis Scott"], answer: 1 },
+  { category: "Songs", question: "\"Cleanin' Out My Closet\" is from which album?", options: ["The Slim Shady LP", "The Marshall Mathers LP", "The Eminem Show", "Encore"], answer: 2 },
   { category: "Track Numbers", question: "What track number is \"Stan\" on The Marshall Mathers LP?", options: ["2", "3", "5", "7"], answer: 1 },
 ];
