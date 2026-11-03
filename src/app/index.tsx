@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import MicLogo from "../components/MicLogo";
 import { rappers } from "../data/rappers";
 
-export default function Home() {
+export default function Landing() {
   const router = useRouter();
   const total = rappers.reduce((sum, r) => sum + r.questions.length, 0);
 
@@ -14,7 +14,7 @@ export default function Home() {
       <Text style={styles.title}>MIC CHECK</Text>
       <Text style={styles.tagline}>How well do you know the bars?</Text>
 
-      <Pressable style={styles.button} onPress={() => router.push("/rappers")}>
+      <Pressable style={styles.button} onPress={() => router.replace("/home")}>
         <Text style={styles.buttonText}>START</Text>
       </Pressable>
 
