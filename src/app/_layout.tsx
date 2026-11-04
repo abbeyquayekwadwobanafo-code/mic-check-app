@@ -1,5 +1,6 @@
 import { Stack } from "expo-router";
 import { View } from "react-native";
+import BackButton from "../components/BackButton";
 import MusicProvider from "../components/MusicProvider";
 import MuteButton from "../components/MuteButton";
 
@@ -15,6 +16,7 @@ export default function Layout() {
           }}
         />
         <MuteButton />
+        <BackButton />
       </View>
     </MusicProvider>
   );
