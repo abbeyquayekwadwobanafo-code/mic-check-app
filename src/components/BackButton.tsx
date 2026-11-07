@@ -1,12 +1,15 @@
 import { Ionicons } from "@expo/vector-icons";
 import { usePathname, useRouter } from "expo-router";
-import { Alert, Pressable, StyleSheet } from "react-native";
+import { useState } from "react";
+import { Pressable, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import DarkAlert from "./DarkAlert";
 
 export default function BackButton() {
   const router = useRouter();
   const pathname = usePathname();
   const insets = useSafeAreaInsets();
+  const [confirm, setConfirm] = useState(false);
 
   // Only show on the category and quiz screens
   if (pathname !== "/categories" && pathname !== "/quiz") return null;
@@ -17,24 +20,31 @@ export default function BackButton() {
   }
 
   function onPress() {
-    if (pathname === "/quiz") {
-      Alert.alert("Leave quiz?", "Your progress in this quiz will be lost.", [
-        { text: "Stay", style: "cancel" },
-        { text: "Leave", style: "destructive", onPress: goBack },
-      ]);
-    } else {
-      goBack();
-    }
+    if (pathname === "/quiz") setConfirm(true);
+    else goBack();
   }
 
   return (
-    <Pressable
-      onPress={onPress}
-      hitSlop={10}
-      style={[styles.button, { top: insets.top + 6 }]}
-    >
-      <Ionicons name="chevron-back" size={22} color="#f5c518" />
-    </Pressable>
+    <>
+      <Pressable
+        onPress={onPress}
+        hitSlop={10}
+        style={[styles.button, { top: insets.top + 6 }]}
+      >
+        <Ionicons name="chevron-back" size={22} color="#f5c518" />
+      </Pressable>
+
+      <DarkAlert
+        visible={confirm}
+        title="Leave quiz?"
+        message="Your progress in this quiz will be lost."
+        buttons={[
+          { text: "Stay", style: "cancel" },
+          { text: "Leave", style: "destructive", onPress: goBack },
+        ]}
+        onClose={() => setConfirm(false)}
+      />
+    </>
   );
 }
 
