@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { useAudioPlayer } from "expo-audio";
 import * as Haptics from "expo-haptics";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import type { ReactNode } from "react";
@@ -11,6 +12,7 @@ import {
   View,
   type ImageSourcePropType,
 } from "react-native";
+import { useMusic } from "../components/MusicProvider";
 import RapperAvatar from "../components/RapperAvatar";
 import Results from "../components/Results";
 import { rapperImages } from "../data/images";
@@ -75,6 +77,18 @@ export default function Quiz() {
   const [newBest, setNewBest] = useState(false);
   const [timeLeft, setTimeLeft] = useState(TIME_LIMIT);
 
+  // Sound effects (they stay silent if the speaker button is muted)
+  const { muted } = useMusic();
+  const correctSound = useAudioPlayer(require("../../assets/sounds/correct.wav"));
+  const wrongSound = useAudioPlayer(require("../../assets/sounds/wrong.wav"));
+
+  function playSound(kind: "correct" | "wrong") {
+    if (muted) return;
+    const player = kind === "correct" ? correctSound : wrongSound;
+    player.seekTo(0);
+    player.play();
+  }
+
   const timed = timer === "1";
   const isMixed = rapperId === "mixed";
   const rapper = rappers.find((r) => r.id === rapperId);
@@ -112,6 +126,7 @@ export default function Quiz() {
   function timeUp() {
     setSelected(-1);
     setStreak(0);
+    playSound("wrong");
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
   }
 
@@ -185,9 +200,11 @@ export default function Quiz() {
       const next = streak + 1;
       setStreak(next);
       if (next > bestStreak) setBestStreak(next);
+      playSound("correct");
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     } else {
       setStreak(0);
+      playSound("wrong");
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
     }
   }
