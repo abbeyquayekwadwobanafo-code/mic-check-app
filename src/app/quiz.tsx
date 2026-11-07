@@ -4,12 +4,12 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import type { ReactNode } from "react";
 import { useEffect, useMemo, useState } from "react";
 import {
-    ImageBackground,
-    Pressable,
-    StyleSheet,
-    Text,
-    View,
-    type ImageSourcePropType,
+  ImageBackground,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  type ImageSourcePropType,
 } from "react-native";
 import RapperAvatar from "../components/RapperAvatar";
 import Results from "../components/Results";
@@ -20,7 +20,7 @@ import { saveScore } from "../utils/scores";
 import { TIME_LIMIT } from "../utils/settings";
 import { shuffle } from "../utils/shuffle";
 
-const MIXED_COUNT = 20; // how many questions in mixed mode
+const MIXED_COUNT = 30; // how many questions in mixed mode
 
 type QuizQuestion = Question & { artist: string; artistId: string };
 

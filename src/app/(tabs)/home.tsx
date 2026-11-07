@@ -61,7 +61,7 @@ export default function Home() {
         <View style={styles.textBox}>
           <Text style={styles.name}>MIXED MODE</Text>
           <Text style={styles.count}>
-            20 random questions from all artists
+            30 random questions from all artists
             {mixedBest ? `  ·  Best: ${mixedBest.score}/${mixedBest.total}` : ""}
           </Text>
         </View>
