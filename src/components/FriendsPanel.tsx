@@ -2,26 +2,26 @@ import { Ionicons } from "@expo/vector-icons";
 import type { ReactNode } from "react";
 import { useCallback, useEffect, useState } from "react";
 import {
-    ActivityIndicator,
-    Alert,
-    Pressable,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    View,
+  ActivityIndicator,
+  Alert,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
 } from "react-native";
 import {
-    acceptRequest,
-    blockPerson,
-    loadBlockedIds,
-    loadOverview,
-    removeFriendship,
-    searchPeople,
-    sendRequest,
-    type FriendRow,
-    type Overview,
-    type PersonRow,
+  acceptRequest,
+  blockPerson,
+  loadBlockedIds,
+  loadOverview,
+  removeFriendship,
+  searchPeople,
+  sendRequest,
+  type FriendRow,
+  type Overview,
+  type PersonRow,
 } from "../lib/friends";
 import { supabase } from "../lib/supabase";
 import RapperAvatar from "./RapperAvatar";
@@ -204,19 +204,11 @@ export default function FriendsPanel({ myId }: { myId: string }) {
       {/* header */}
       <View style={styles.header}>
         <View style={{ flex: 1 }}>
-          <Text style={styles.headerName}>
-            {me?.display_name || (me ? `@${me.username}` : "...")}
-          </Text>
-          {me && <Text style={styles.headerUser}>@{me.username}</Text>}
+          <Text style={styles.headerName}>MESSAGES</Text>
+          {me && (
+            <Text style={styles.headerUser}>Signed in as @{me.username}</Text>
+          )}
         </View>
-        <Pressable
-          style={styles.logout}
-          onPress={() => supabase.auth.signOut()}
-          hitSlop={10}
-        >
-          <Ionicons name="log-out" size={18} color="#f5c518" />
-          <Text style={styles.logoutText}>LOG OUT</Text>
-        </Pressable>
       </View>
 
       {/* tabs */}
@@ -371,19 +363,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 14,
   },
-  headerName: { color: "#fff", fontSize: 22, fontWeight: "900" },
-  headerUser: { color: "#f5c518", fontWeight: "700", marginTop: 2 },
-  logout: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "#f5c518",
-    marginRight: 44,
+  headerName: {
+    color: "#f5c518",
+    fontSize: 24,
+    fontWeight: "900",
+    letterSpacing: 3,
   },
-  logoutText: { color: "#f5c518", fontWeight: "800", fontSize: 12, marginLeft: 6 },
+  headerUser: { color: "#888", fontWeight: "700", marginTop: 2 },
   tabs: {
     flexDirection: "row",
     marginHorizontal: 16,
