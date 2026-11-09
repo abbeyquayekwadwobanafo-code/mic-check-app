@@ -41,7 +41,7 @@ function Person({
   const name = person.display_name || person.username;
   return (
     <Pressable style={styles.row} onPress={onPress} disabled={!onPress}>
-      <RapperAvatar id="none" name={name} size={44} />
+      <RapperAvatar id={person.favorite ?? "none"} name={name} size={44} />
       <View style={styles.rowText}>
         <Text style={styles.rowName}>{name}</Text>
         <Text style={styles.rowUser}>@{person.username}</Text>
@@ -72,7 +72,15 @@ function MiniButton({
   );
 }
 
-export default function FriendsPanel({ myId }: { myId: string }) {
+export default function FriendsPanel({
+  myId,
+  onBack,
+  onOpenChat,
+}: {
+  myId: string;
+  onBack?: () => void;
+  onOpenChat?: (person: PersonRow) => void;
+}) {
   const [tab, setTab] = useState<Tab>("friends");
   const [me, setMe] = useState<{ username: string; display_name: string } | null>(null);
   const [overview, setOverview] = useState<Overview>(EMPTY);
@@ -203,8 +211,27 @@ export default function FriendsPanel({ myId }: { myId: string }) {
     <View style={styles.screen}>
       {/* header */}
       <View style={styles.header}>
+        {onBack && (
+          <Pressable
+            onPress={onBack}
+            hitSlop={10}
+            style={{
+              width: 36,
+              height: 36,
+              borderRadius: 18,
+              backgroundColor: "#1c1c1c",
+              borderWidth: 1,
+              borderColor: "#333",
+              alignItems: "center",
+              justifyContent: "center",
+              marginRight: 12,
+            }}
+          >
+            <Ionicons name="chevron-back" size={22} color="#f5c518" />
+          </Pressable>
+        )}
         <View style={{ flex: 1 }}>
-          <Text style={styles.headerName}>MESSAGES</Text>
+          <Text style={styles.headerName}>FRIENDS</Text>
           {me && (
             <Text style={styles.headerUser}>Signed in as @{me.username}</Text>
           )}
@@ -249,9 +276,7 @@ export default function FriendsPanel({ myId }: { myId: string }) {
               <Person
                 key={row.friendshipId}
                 person={row.person}
-                onPress={() =>
-                  Alert.alert("Chat", "Chat is coming in the next step.")
-                }
+                onPress={() => onOpenChat?.(row.person)}
               >
                 <Pressable onPress={() => friendOptions(row)} hitSlop={12}>
                   <Ionicons name="ellipsis-horizontal" size={22} color="#888" />

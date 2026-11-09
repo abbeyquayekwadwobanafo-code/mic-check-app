@@ -1,6 +1,11 @@
 import { supabase } from "./supabase";
 
-export type PersonRow = { id: string; username: string; display_name: string };
+export type PersonRow = {
+  id: string;
+  username: string;
+  display_name: string;
+  favorite: string | null;
+};
 export type FriendRow = { friendshipId: number; person: PersonRow };
 export type Overview = {
   friends: FriendRow[];
@@ -31,7 +36,7 @@ export async function loadOverview(myId: string): Promise<Overview> {
   if (otherIds.length > 0) {
     const { data: p, error: pErr } = await supabase
       .from("profiles")
-      .select("id, username, display_name")
+      .select("id, username, display_name, favorite")
       .in("id", otherIds);
     if (pErr) throw pErr;
     people = (p ?? []) as PersonRow[];
@@ -76,7 +81,7 @@ export async function searchPeople(
 
   const { data, error } = await supabase
     .from("profiles")
-    .select("id, username, display_name")
+    .select("id, username, display_name, favorite")
     .ilike("username", `${q}%`)
     .neq("id", myId)
     .limit(20);

@@ -11,8 +11,10 @@ export default function BackButton() {
   const insets = useSafeAreaInsets();
   const [confirm, setConfirm] = useState(false);
 
-  // Only show on the category and quiz screens
-  if (pathname !== "/categories" && pathname !== "/quiz") return null;
+  // Only show on the category, quiz and chat screens
+  if (pathname !== "/categories" && pathname !== "/quiz" && pathname !== "/chat") {
+    return null;
+  }
 
   function goBack() {
     if (router.canGoBack()) router.back();

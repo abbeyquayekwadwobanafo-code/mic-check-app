@@ -1,12 +1,20 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import { useState } from "react";
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from "react-native";
 import FriendsPanel from "../../components/FriendsPanel";
+import Inbox from "../../components/Inbox";
+import type { PersonRow } from "../../lib/friends";
 import { useSession } from "../../lib/useSession";
 
 export default function Messages() {
   const router = useRouter();
   const { session, loading } = useSession();
+  const [view, setView] = useState<"chats" | "friends">("chats");
+
+  function openChat(person: PersonRow) {
+    router.push({ pathname: "/chat", params: { friend: person.id } });
+  }
 
   if (loading) {
     return (
@@ -33,7 +41,23 @@ export default function Messages() {
     );
   }
 
-  return <FriendsPanel myId={session.user.id} />;
+  if (view === "friends") {
+    return (
+      <FriendsPanel
+        myId={session.user.id}
+        onBack={() => setView("chats")}
+        onOpenChat={openChat}
+      />
+    );
+  }
+
+  return (
+    <Inbox
+      myId={session.user.id}
+      onOpenFriends={() => setView("friends")}
+      onOpenChat={openChat}
+    />
+  );
 }
 
 const styles = StyleSheet.create({
