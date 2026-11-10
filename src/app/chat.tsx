@@ -3,26 +3,26 @@ import * as Haptics from "expo-haptics";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 import {
-    ActivityIndicator,
-    FlatList,
-    KeyboardAvoidingView,
-    Platform,
-    Pressable,
-    StyleSheet,
-    Text,
-    TextInput,
-    View,
+  ActivityIndicator,
+  FlatList,
+  Keyboard,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import DarkAlert, { type DarkAlertButton } from "../components/DarkAlert";
 import RapperAvatar from "../components/RapperAvatar";
 import {
-    blockAndUnfriend,
-    clockTime,
-    loadConversation,
-    reportUser,
-    sendMessage,
-    type Message,
+  blockAndUnfriend,
+  clockTime,
+  loadConversation,
+  reportUser,
+  sendMessage,
+  type Message,
 } from "../lib/chat";
 import type { PersonRow } from "../lib/friends";
 import { supabase } from "../lib/supabase";
@@ -64,6 +64,21 @@ export default function Chat() {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
   const [dialog, setDialog] = useState<DialogState | null>(null);
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
+
+  // Track the keyboard so the message box can sit just above it
+  useEffect(() => {
+    const showEvent = Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow";
+    const hideEvent = Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide";
+    const show = Keyboard.addListener(showEvent, (e) =>
+      setKeyboardHeight(e.endCoordinates.height)
+    );
+    const hide = Keyboard.addListener(hideEvent, () => setKeyboardHeight(0));
+    return () => {
+      show.remove();
+      hide.remove();
+    };
+  }, []);
 
   // Adds a message to the top of the list (ignores ones we already have)
   const addMessage = useCallback((m: Message) => {
@@ -189,11 +204,12 @@ export default function Chat() {
     return <View style={styles.screen} />;
   }
 
+  // When the keyboard is open, lift the message box above it
+  const bottomPadding =
+    keyboardHeight > 0 ? keyboardHeight + 8 : Math.max(insets.bottom, 10);
+
   return (
-    <KeyboardAvoidingView
-      style={styles.screen}
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
-    >
+    <View style={styles.screen}>
       {/* header */}
       <View style={[styles.header, { paddingTop: insets.top + 6 }]}>
         <RapperAvatar id={friend?.favorite ?? "none"} name={name} size={40} />
@@ -224,6 +240,7 @@ export default function Chat() {
           inverted
           keyExtractor={(m) => String(m.id)}
           contentContainerStyle={{ padding: 16 }}
+          keyboardShouldPersistTaps="handled"
           renderItem={({ item }) => (
             <Bubble message={item} mine={item.sender === myId} />
           )}
@@ -242,7 +259,7 @@ export default function Chat() {
       {error !== "" && <Text style={styles.error}>{error}</Text>}
 
       {/* message box */}
-      <View style={[styles.composer, { paddingBottom: Math.max(insets.bottom, 10) }]}>
+      <View style={[styles.composer, { paddingBottom: bottomPadding }]}>
         <TextInput
           style={styles.input}
           value={text}
@@ -268,7 +285,7 @@ export default function Chat() {
         buttons={dialog?.buttons ?? []}
         onClose={() => setDialog(null)}
       />
-    </KeyboardAvoidingView>
+    </View>
   );
 }
 
