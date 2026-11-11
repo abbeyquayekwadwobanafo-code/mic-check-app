@@ -1,6 +1,6 @@
 // @ts-nocheck
-import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
 
 export default function TabsLayout() {
   return (
@@ -13,7 +13,7 @@ export default function TabsLayout() {
           backgroundColor: "#0d0d0d",
           borderTopColor: "#222",
         },
-        tabBarLabelStyle: { fontWeight: "700", letterSpacing: 1 },
+        tabBarLabelStyle: { fontWeight: "700", letterSpacing: 0.5, fontSize: 10 },
         sceneStyle: { backgroundColor: "#0d0d0d" },
       }}
     >
@@ -23,6 +23,15 @@ export default function TabsLayout() {
           title: "HOME",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="ranks"
+        options={{
+          title: "RANKS",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="trophy" size={size} color={color} />
           ),
         }}
       />
