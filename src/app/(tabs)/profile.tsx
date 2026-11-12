@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useFocusEffect } from "expo-router";
+import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 import {
   Pressable,
@@ -9,11 +9,10 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import AuthForm from "../../components/AuthForm";
 import DarkAlert from "../../components/DarkAlert";
 import RapperAvatar from "../../components/RapperAvatar";
 import { rappers } from "../../data/rappers";
+import { setGuest } from "../../lib/guest";
 import { supabase } from "../../lib/supabase";
 import { useSession } from "../../lib/useSession";
 import {
@@ -36,15 +35,14 @@ type Account = {
 };
 
 export default function Profile() {
+  const router = useRouter();
   const { session } = useSession();
-  const insets = useSafeAreaInsets();
   const myId = session?.user.id;
 
   const [local, setLocal] = useState<ProfileData>({ name: "", favorite: null });
   const [account, setAccount] = useState<Account | null>(null);
   const [scores, setScores] = useState<Scores>({});
   const [stats, setStats] = useState<Stats>({ played: 0, correct: 0, answered: 0 });
-  const [showAuth, setShowAuth] = useState(false);
   const [confirmLogout, setConfirmLogout] = useState(false);
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState("");
@@ -69,11 +67,9 @@ export default function Profile() {
     }, [myId])
   );
 
-  // Close the login form once you're logged in, and clear account info when logged out
+  // Clear account info when logged out
   useEffect(() => {
-    if (session) {
-      setShowAuth(false);
-    } else {
+    if (!session) {
       setAccount(null);
       setEditing(false);
     }
@@ -117,6 +113,12 @@ export default function Profile() {
     setMessage("");
   }
 
+  async function logOut() {
+    await supabase.auth.signOut();
+    await setGuest(false);
+    router.replace("/welcome");
+  }
+
   // Your rank comes from your best percentage in any category with 10+ questions
   const pcts = Object.values(scores)
     .filter((s) => s.total >= 10)
@@ -128,22 +130,6 @@ export default function Profile() {
 
   const mixed = scores["mixed:All"];
   const mixedTimed = scores["mixed:All-timed"];
-
-  // The sign-up / login form, shown full-screen with a close button
-  if (showAuth) {
-    return (
-      <View style={{ flex: 1, backgroundColor: "#0d0d0d" }}>
-        <AuthForm />
-        <Pressable
-          style={[styles.close, { top: insets.top + 6 }]}
-          onPress={() => setShowAuth(false)}
-          hitSlop={10}
-        >
-          <Ionicons name="close" size={22} color="#f5c518" />
-        </Pressable>
-      </View>
-    );
-  }
 
   return (
     <ScrollView
@@ -231,14 +217,18 @@ export default function Profile() {
 
       {message !== "" && <Text style={styles.message}>{message}</Text>}
 
-      {/* logged-out prompt */}
+      {/* guest card */}
       {!session && (
         <View style={styles.loginCard}>
-          <Ionicons name="chatbubbles" size={28} color="#f5c518" />
+          <Ionicons name="person-circle" size={32} color="#f5c518" />
           <Text style={styles.loginText}>
-            Create an account or log in to add friends and chat.
+            You're playing as a guest. Log in or create an account to add
+            friends, chat and join the leaderboard.
           </Text>
-          <Pressable style={styles.loginButton} onPress={() => setShowAuth(true)}>
+          <Pressable
+            style={styles.loginButton}
+            onPress={() => router.push("/welcome")}
+          >
             <Text style={styles.loginButtonText}>LOG IN / CREATE ACCOUNT</Text>
           </Pressable>
         </View>
@@ -358,13 +348,7 @@ export default function Profile() {
         message="You'll need your email and password to log back in."
         buttons={[
           { text: "Cancel", style: "cancel" },
-          {
-            text: "Log out",
-            style: "destructive",
-            onPress: () => {
-              supabase.auth.signOut();
-            },
-          },
+          { text: "Log out", style: "destructive", onPress: logOut },
         ]}
         onClose={() => setConfirmLogout(false)}
       />
@@ -375,18 +359,6 @@ export default function Profile() {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: "#0d0d0d" },
   content: { padding: 24, paddingTop: 64, paddingBottom: 40 },
-  close: {
-    position: "absolute",
-    left: 16,
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: "rgba(28,28,28,0.85)",
-    borderWidth: 1,
-    borderColor: "#333",
-    alignItems: "center",
-    justifyContent: "center",
-  },
   header: { alignItems: "center", marginBottom: 24 },
   nameInput: {
     color: "#fff",
@@ -441,7 +413,7 @@ const styles = StyleSheet.create({
     padding: 18,
     marginBottom: 24,
   },
-  loginText: { color: "#ccc", textAlign: "center", marginVertical: 10 },
+  loginText: { color: "#ccc", textAlign: "center", marginVertical: 10, lineHeight: 20 },
   loginButton: {
     alignSelf: "stretch",
     backgroundColor: "#f5c518",

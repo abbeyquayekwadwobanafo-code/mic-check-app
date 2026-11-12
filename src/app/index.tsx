@@ -2,10 +2,30 @@ import { useRouter } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import MicLogo from "../components/MicLogo";
 import { rappers } from "../data/rappers";
+import { isGuest } from "../lib/guest";
+import { supabase } from "../lib/supabase";
+import { ALLOW_GUEST } from "../utils/settings";
 
 export default function Landing() {
   const router = useRouter();
   const total = rappers.reduce((sum, r) => sum + r.questions.length, 0);
+
+  async function start() {
+    try {
+      const { data } = await supabase.auth.getSession();
+      if (data.session) {
+        router.replace("/home");
+        return;
+      }
+      if (ALLOW_GUEST && (await isGuest())) {
+        router.replace("/home");
+        return;
+      }
+    } catch {
+      // if anything goes wrong, fall through to the welcome screen
+    }
+    router.replace("/welcome");
+  }
 
   return (
     <View style={styles.container}>
@@ -14,7 +34,7 @@ export default function Landing() {
       <Text style={styles.title}>MIC CHECK</Text>
       <Text style={styles.tagline}>How well do you know the bars?</Text>
 
-      <Pressable style={styles.button} onPress={() => router.replace("/home")}>
+      <Pressable style={styles.button} onPress={start}>
         <Text style={styles.buttonText}>START</Text>
       </Pressable>
 
